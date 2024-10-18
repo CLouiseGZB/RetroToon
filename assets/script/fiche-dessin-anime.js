@@ -1,5 +1,6 @@
 //NAV BAR LOUISIANE
 // **sous menu
+// sous menu
 document.addEventListener('DOMContentLoaded', () => {
     const accountToggle = document.getElementById('accountToggle');
     const accountSubMenu = document.getElementById('accountSubMenu');
