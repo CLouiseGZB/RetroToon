@@ -56,7 +56,7 @@ section {
     align-items: center;
     padding-block: 10px;
     padding-inline: 20px 0px;
-    background: linear-gradient( #001429, transparent);
+    background: linear-gradient(#001429, transparent);
     height: 80px;
     position: fixed;
     top: 0;
@@ -73,10 +73,11 @@ section {
 /* Centrage des liens de navigation */
 .nav-links {
     display: flex;
-    justify-content:flex-start;
-  flex-grow: 1;
+    justify-content: flex-start;
+    flex-grow: 1;
 }
-.nav-links i{
+
+.nav-links i {
     padding-right: 3px;
 }
 
@@ -116,12 +117,12 @@ section {
 .nav-icons .icon i {
     font-size: 1.5em;
     color: #FFFAE0;
-    text-decoration: none; 
+    text-decoration: none;
     transition: color 0.3s;
 }
 
 .icon i:hover,
-.search-icon i:hover{
+.search-icon i:hover {
     color: #EB7A57;
     text-decoration: none;
 }
@@ -159,7 +160,7 @@ section {
 .search-box.active {
     width: 300px;
     border-radius: 20px;
-    background: #EB7A57;
+    background: #001D3D;
     color: #FFFAE0;
     text-indent: 0;
     padding-left: 40px;
@@ -185,24 +186,32 @@ section {
 
 .sub-menus {
     position: absolute;
-    top: 144%; /* Positionner le sous-menu directement sous le parent */
-    right: 0;  /* Aligner le sous-menu avec le bord droit de l'icône */
-    width: 200px; /* Largeur du sous-menu */
+    top: 144%;
+    /* Positionner le sous-menu directement sous le parent */
+    right: 0;
+    /* Aligner le sous-menu avec le bord droit de l'icône */
+    width: 200px;
+    /* Largeur du sous-menu */
     background: #001429;
     z-index: 99;
-    display: none; /* Masqué par défaut */
+    display: none;
+    /* Masqué par défaut */
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     opacity: 0;
     visibility: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.594);
 }
-.sub-menus hr{
+
+.sub-menus hr {
     border: solid 1px #FFFAE0;
     margin-inline: 10%;
 }
+
 .sub-menus.active {
-    display: block; /* Affiche le sous-menu */
-    opacity: 1; /* Assure une transition en douceur */
+    display: block;
+    /* Affiche le sous-menu */
+    opacity: 1;
+    /* Assure une transition en douceur */
     visibility: visible;
 }
 
@@ -225,7 +234,8 @@ section {
 }
 
 .sub-menus i {
-    padding-right: 10px; /* Espacement entre l'image et le texte */
+    padding-right: 10px;
+    /* Espacement entre l'image et le texte */
     font-size: 1.5rem;
 }
 
@@ -572,12 +582,14 @@ select:focus {
 } */
 
 /************ COMMENTAIRES ************/
-#commentaires{
+#commentaires {
     width: 90%;
 }
-#description{
+
+#description {
     width: 90%;
 }
+
 #commentaires h2 {
     font-family: "Bangers", system-ui;
     font-weight: 400;
@@ -722,6 +734,241 @@ button[type="submit"]:focus {
     letter-spacing: 2px;
 }
 
+/* CODE DE LOUISIANE */
+#historique-container,
+#series-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* Transition fluide */
+    /* border: 1px solid #45af5e; */
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.carousel-container,
+.carousel-container-reprendre {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: hidden;
+    /* Empêche le débordement visuel */
+    width: 100%;
+    /* border: solid 1px red;  */
+}
+
+.container,
+.reprendre-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    overflow: hidden;
+    width: 100%;
+    /* border: solid 1px yellow; */
+}
+
+.container:hover .arrow-right-series,
+.container:hover .arrow-left-series,
+.animation-container:hover .arrow-right-animation,
+.animation-container:hover .arrow-left-animation,
+.reprendre-container:hover .arrow-right,
+.reprendre-container:hover .arrow-left {
+    opacity: 1;
+    transition: 0.2s;
+}
+
+.container .body-item-1:hover,
+.reprendre-container .body-item-1:hover,
+.animation-container .animation-body-item-1:hover {
+    color: #EB7A57;
+    opacity: 1;
+}
+
+.container .body-item,
+.reprendre-container .body-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.container .body-item:hover,
+.reprendre-container .body-item:hover {
+    width: 22vw;
+    height: 22vw;
+    opacity: 1;
+    transition: 0.4s;
+    transition-delay: 0.4s;
+}
+
+.container .body-item-1,
+.reprendre-container .body-item-1,
+.animation-container .animation-body-item-1 {
+    flex-grow: 1;
+    text-align: center;
+    opacity: 0.4;
+}
+
+.container .body-item-1:hover,
+.reprendre-container .body-item-1:hover,
+.animation-container .animation-body-item-1:hover {
+    color: #EB7A57;
+    opacity: 1;
+    transition: 0.2s;
+}
+
+.container .body-item-2,
+.reprendre-container .body-item-2 {
+    align-self: flex-start;
+    font-size: 1.2rem;
+    margin-bottom: 0.5vw;
+}
+
+
+
+.container .play,
+.reprendre-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .play i,
+.reprendre-container .play i {
+    margin-top: 3vw;
+    justify-content: center;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 25vw;
+    background: rgba(0, 0, 0, 0.5);
+    border: 0.1em solid white;
+    padding: 1.4vw;
+    font-size: 2vw;
+    margin-bottom: 1rem;
+    /* border: solid lime 1px; */
+
+}
+
+.arrow-right-series,
+.arrow-left-series,
+.arrow-left-animation,
+.arrow-right-animation {
+    color: white;
+    background-color: rgba(20, 20, 20, 0.5);
+    width: 3%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    cursor: pointer;
+    font-size: 2vw;
+    opacity: 0.2;
+}
+
+.arrow-right-series:hover,
+.arrow-left-series:hover,
+.arrow-right-animation:hover,
+.arrow-left-animation:hover {
+    font-size: 3vw;
+    transition: 0.1s;
+    color: #EB7A57;
+}
+
+.arrow-right-series,
+.arrow-right-animation {
+    right: 0;
+}
+
+.arrow-left-series,
+.arrow-left-animation {
+    left: 0;
+}
+
+/* Taille par défaut des éléments */
+.item {
+    width: 20vw;
+    /* Taille ajustée pour afficher 5 images */
+    height: 12vw;
+    /* Ajustement de la hauteur */
+    background: no-repeat center/cover;
+    margin: 0 10px;
+    /* Espacement ajusté entre les éléments */
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    color: white;
+    box-shadow: 0 4px 15px #000;
+}
+
+/* Effet de hover pour agrandir légèrement l'élément */
+.item:hover {
+    width: 22vw;
+    /* Agrandissement léger en largeur */
+    height: 14vw;
+    /* Agrandissement léger en hauteur */
+    transition: 0.3s ease;
+    opacity: 1;
+}
+
+.item:hover .body-item {
+    visibility: visible;
+}
+
+.item:hover .body-item-1 {
+    width: 100%;
+    /* border: #EB7A57 solid 1px; */
+}
+
+.match {
+    color: #45af5e;
+    font-size: bold;
+}
+
+.description {
+    font-weight: 300;
+    font-size: 1.4vw;
+}
+
+
+.properties .age-limit,
+.animation-properties .age-limit {
+    border: 0.1em solid rgba(255, 255, 255, 0.4);
+    font-weight: 200;
+    font-size: 1.2vw;
+    padding: 0 3px 0 3px;
+}
+
+.content-wrapper {
+    background-color: rgba(0, 20, 41, 0.716);
+    /* Fond semi-transparent noir */
+    padding: 1vw;
+    /* border-radius: 0.5vw; */
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    /* border: solid 1px lime; */
+    margin-bottom: 40%;
+    /* height: 200px; */
+    /* width: 20rem; */
+}
+
+.item:hover .content-wrapper {
+    opacity: 1;
+    /* Affiche le contenu lorsque l'élément est survolé */
+}
+
+/* *****************Carrousel films************** */
+.carousel-container-animation {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 100%;
+}
+
 /************ FOOTER ************/
 footer {
     height: 300px;
@@ -778,9 +1025,11 @@ footer p {
     margin-top: 20px;
     font-family: Fredoka;
 }
-footer a{
+
+footer a {
     text-decoration: none;
 }
+
 /************ RESPONSIVE ************/
 @media (max-width: 767px) {
 

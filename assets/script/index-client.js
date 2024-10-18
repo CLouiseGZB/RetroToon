@@ -17,24 +17,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// *barre de recherche
+//***************** petite barre de recherche
 document.addEventListener('DOMContentLoaded', () => {
     const searchIcon = document.querySelector('.search-icon');
     const searchBox = document.getElementById('search-box');
+    const form = document.getElementById('searchForm');
+    let filterType = 'all'; // Type de filtre par défaut
 
+    // Ajoute un événement au clic sur l'icône de recherche
     searchIcon.addEventListener('click', () => {
         searchBox.classList.toggle('active'); // Ajoute ou supprime la classe active
         searchBox.focus(); // Focalise la barre de recherche pour permettre la saisie de texte
     });
 
+    // Gestion de l'événement "keydown" sur la barre de recherche
     searchBox.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
-            // Ajoute ici la logique pour envoyer la recherche, par exemple en soumettant un formulaire
-            console.log('Recherche soumise :', searchBox.value);
+            const searchQuery = searchBox.value.trim();
+            if (searchQuery) {
+                // Redirige vers la page des résultats avec la requête de recherche et le filtre
+                window.location.href = `/html/resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}&filter=${filterType}`;
+            }
+        }
+    });
+
+    // Gestion de la soumission du formulaire
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche le rechargement de la page
+        const searchQuery = searchBox.value.trim();
+        if (searchQuery) {
+            // Redirige vers la page des résultats avec la requête de recherche et le filtre
+            window.location.href = `/html/resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}&filter=${filterType}`;
         }
     });
 });
+
 
 // Bouton mute video
 function toggleMute() {

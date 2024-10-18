@@ -48,7 +48,8 @@
                     </a>
 
                     <ul class="sub-menus" id="accountSubMenu">
-                        <li onclick="modeEnfant()"><a href='/html/profil.html'><i class="fa-solid fa-user-pen text-dark-emphasis"></i>Gestion profil</a></li>
+                        <li onclick="modeEnfant()"><a href='/html/profil.html'><i
+                                    class="fa-solid fa-user-pen text-dark-emphasis"></i>Gestion profil</a></li>
                         <hr>
                         <li><a href='/parametre.html'><i class="fi fi-rr-settings"></i>Paramètres</a></li>
                         <hr>
@@ -109,7 +110,8 @@
                                 <span id="mute-btn"><i class="fa-solid fa-volume-high"></i></span>
 
                                 <div>
-                                    <input type="range" name="volume-slider" id="volume-slider" min="0" max="100" value="50">
+                                    <input type="range" name="volume-slider" id="volume-slider" min="0" max="100"
+                                        value="50">
                                     <!-- <progress min="0" max="100" value="50"></progress> -->
                                 </div>
                                 <span id="full-screen"><i class="fa-solid fa-expand"></i></span>
@@ -155,7 +157,14 @@
                 </div>
 
                 <h2>Description</h2>
-                <p>Cette série raconte les aventures de trois amies adolescentes : Alex, Clover et Sam. Étudiantes dans
+                <p><span id="loading"></span></p>
+                <p><span id="synopsis"></span></p>
+                <p>Genres : <span id="genres"></span></p>
+                <p>Saisons : <span id="seasons"></span></p>
+                <p>Durée : <span id="runtime"></span></p>
+                <p>Année : <span id="year"></span></p>
+
+                <!-- <p>Cette série raconte les aventures de trois amies adolescentes : Alex, Clover et Sam. Étudiantes dans
                     la
                     vie de tous les jours, elles sont en réalité agents secrets ; c'est-à-dire des espionnes
                     professionnelles qui travaillent pour le WOOHP, une organisation secrète de protection de
@@ -163,8 +172,8 @@
                     Lorsque leur patron Jerry a besoin de leurs services, il les envoie en mission, après leur avoir
                     fait
                     revêtir des combinaisons intégrales moulantes en latex coloré (jaune pour Alex, rouge pour Clover et
-                    verte pour Sam) et fourni des gadgets, qui les aideront à mener à bien leurs enquêtes.</p><br>
-                <p>Animation, Comédie, Kids, Action & Adventure, Drame<br>2001<br>7 saisons<br>20m</p>
+                    verte pour Sam) et fourni des gadgets, qui les aideront à mener à bien leurs enquêtes.</p> -->
+                <!-- <p>Animation, Comédie, Kids, Action & Adventure, Drame<br>2001<br>7 saisons<br>20m</p> -->
             </section>
 
             <section id="commentaires">
@@ -203,6 +212,13 @@
             </section>
             <section id="nos-suggestions">
                 <h2>Nos suggestions</h2>
+                <div class="container">
+                    <div class="arrow-left-series"><i class="fi fi-bs-angle-left"></i></div>
+                    <div class="carousel-container" id="series-container">
+                        <!-- Les séries seront injectées ici par JavaScript -->
+                    </div>
+                    <div class="arrow-right-series"><i class="fi fi-bs-angle-right"></i></div>
+                </div>
             </section>
         </div>
     </main>
@@ -210,11 +226,21 @@
     <footer>
         <img src="/assets/imgParametre/Design_sans_titre-removebg-preview 2.png" alt="logo">
         <div id="liste-footer">
-            <a href="/html/index-client.html"><p>Accueil</p></a>
-            <a href="/html/contact.html"><p>Nous contacter</p></a>
-            <a href="/html/index.html#dispo"><p>Applications</p></a>
-            <a href="#"><p>Conditions générales d'utilisation</p></a>
-            <a href="#"><p>Politique de confidentialité</p></a>
+            <a href="/html/index-client.html">
+                <p>Accueil</p>
+            </a>
+            <a href="/html/contact.html">
+                <p>Nous contacter</p>
+            </a>
+            <a href="/html/index.html#dispo">
+                <p>Applications</p>
+            </a>
+            <a href="#">
+                <p>Conditions générales d'utilisation</p>
+            </a>
+            <a href="#">
+                <p>Politique de confidentialité</p>
+            </a>
         </div>
         <nav>
             <a href=""><i class="fa-brands fa-twitter"></i></a>
@@ -223,6 +249,8 @@
         </nav>
         <P>Tous droits réservés © Retrotoon Group 2024</P>
     </footer>
+
+    <!-- <script src="https://kit.fontawesome.com/e5a9a83adf.js" crossorigin="anonymous"></script> -->
     <script src="/assets/script/fiche-dessin-anime.js"></script>
 </body>
 
