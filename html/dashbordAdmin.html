@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/parametre.css">
+    <link rel="stylesheet" href="/assets/css/dashbordAdmin.css">
     <link rel="icon" type="image/png" sizes="16x16"
         href="/RetroToon/assets/images/Design_sans_titre-removebg-preview_2.png"> <!-- pour logo fenetre -->
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
@@ -81,7 +81,7 @@
                 </div>
                 <div class="choixParametre" data-page="page-gestion-admin-2">
                     <i class="fa-solid fa-key"></i>
-                    <p>Gestion compte clients</p>
+                    <p>Gestion comptes clients</p>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
                 <div class="choixParametre" data-page="page-gestion-admin-3">
@@ -97,7 +97,9 @@
                 <div class="choixParametre" data-page="page-gestion-admin-5">
                     <i class="fa-solid fa-gear"></i>
                     <p>Paramêtres généraux</p>
+                    <i class="fa-solid fa-chevron-right"></i>
                 </div>
+
                 <div class="choixParametre">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <p>Déconnexion</p>
@@ -105,36 +107,38 @@
             </section>
 
 
-            <!-- Page cachée de gestion du video -->
+            <!-- Page cachée 1 GESTION DES VIDEOS -->
             <section id="page-gestion-admin-1" class="page">
                 <div class="container-cache">
-                    <h3>Gestion des videos</h3>
-                    <div class=" buttonGestionVideo">
+                    <h3>Gestion videos</h3>
+                    <div class=" button-container">
                         <button type="submit" onclick="filtreFilms()">Films</button>
-                        <button type="submit" onclick="filtreSerie()">Serie</button>
+                        <button type="submit" onclick="filtreSeries()">Serie</button>
                         <button type="submit" onclick="filtreRecherche()">Rechercher</button>
                     </div>
-                    <table id="listeGestionFilm">
-                        <thead>
-                            <tr>
-                                <th>Film</th>
-                                <th>Nom du Film</th>
-                                <th>Date de Mise en Ligne</th>
-                                <th>Date de Mise Hors Ligne</th>
-                                <th>Emplacement</th>
-                                <th>Sélectionner</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- ajout du contenu par JavaScript -->
-                        </tbody>
-                    </table>
-                    <div class="buttonGestionVideo">
-                        <button type="submit" onclick="ajouterNouvelleVideo()">Ajouter une video</button>
-                        <button type="submit" onclick="mettreHorsLigne()">Mettre hors ligne</button>
-                        <button type="submit" onclick="suprmierVideo()">Supprimer</button>
-                        <button type="submit" onclick="changerLemplacement()">Changer l'emplacement</button>
-                    </div>
+                        <table id="listegestionfilm">
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Catégorie</th>
+                                    <th>Genre</th>
+                                    <th>Date de mise en ligne</th>
+                                    <th>Date de mise hors ligne</th>
+                                    <th>Statut</th>
+                                    <th>Selectionner</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Les lignes seront ajoutées ici par JavaScript -->
+                            </tbody>
+                        </table>
+                    <div class="button-container">
+          
+                        <button type="button" onclick="window.location.href='uploadVideo.html'">Ajouter une vidéo</button>
+                        <button type="submit" onclick="mettreHorsLigneVideo()">Mettre hors ligne</button>
+                        <button type="submit" onclick="archiverVideo()">Archiver</button>
+                        <button type="submit" onclick="suppimerVideo()">Supprimer</button>
+               </div>
                     <div class="retourPage" data-page="page-accueil">
                         <i class="fa-solid fa-arrow-left"></i>
                         <p>Retour</p>
@@ -142,36 +146,33 @@
                 </div>
             </section>
 
-            <!-- Page cachée de gestion comptes clients -->
+            <!-- Page cachée 2 GESTION COMPTE CLIENTS -->
             <section id="page-gestion-admin-2" class="page">
                 <div class="container-cache">
-                    <h3>Gestion comptes client</h3>
-                    <label for="nom">Nom</label>
-                    <div class="retourPage" data-page="page-accueil">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <p>Retour</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Page cachée messagerie -->
-            <section id="page-gestion-admin-3" class="page">
-                <div class="container-cache">
-                    <h3>Messagerie</h3>
-
+                    <h3>Gestion comptes clients</h3>
                     <table id="listeGestionMessage">
                         <thead>
                             <tr>
                                 <th>Nom</th>
                                 <th>Prenom</th>
                                 <th>Email</th>
-                                <th>Message</th>
+                                <th>Comptes</th>
+                                <th>Date de creation du compte</th> 
+                                <th>Statut</th>
+                                <th>Selectionner</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- ajout du contenu par JavaScript -->
                         </tbody>
                     </table>
+                    <div class="button-container">
+                        <button type="submit" onclick="ModifierCompteClient()">Modifier</button>
+                        <button type="submit" onclick="archiverClient()">Archiver</button>
+                        <button type="submit" onclick="supprierCompteClient()">Supprimer</button>
+               </div>
+
+
                     <div class="retourPage" data-page="page-accueil">
                         <i class="fa-solid fa-arrow-left"></i>
                         <p>Retour</p>
@@ -179,7 +180,40 @@
                 </div>
             </section>
 
-            <!-- Page cachée statistiques -->
+            <!-- Page cachée 3 MESSAGERIE -->
+            <section id="page-gestion-admin-3" class="page">
+                <div class="container-cache">
+                    <h3>Messagerie</h3>
+                    <table id="listeGestionMessage">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Email</th>
+                                <th>Date</th>
+                                <th>Message</th>
+                                <th>Selectionner</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ajout du contenu par JavaScript -->
+                        </tbody>
+                    </table>
+
+                    <div class="button-container">
+                        <button type="submit" onclick="repondreMessage()">Repondre</button>
+                        <button type="submit" onclick="archiverMessage()">Archiver</button>
+                        <button type="submit" onclick="supprimerMessage()">Supprimer</button>
+               </div>
+
+                    <div class="retourPage" data-page="page-accueil">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <p>Retour</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Page cachée 4 STATISTIQUE -->
             <section id="page-gestion-admin-4" class="page">
                 <div class="container-cache">
                     <h3>Statistiques</h3>
@@ -190,10 +224,10 @@
                 </div>
             </section>
 
-            <!-- Page cachée parametre generaux -->
+            <!-- Page cachée 5 PARAMETRE GENERAUX -->
             <section id="page-gestion-admin-5" class="page">
                 <div class="container-cache">
-                    <h3>Paramêtres généraux</h3>
+                    <h3>Paramêtre generaux</h3>
                     <div class="retourPage" data-page="page-accueil">
                         <i class="fa-solid fa-arrow-left"></i>
                         <p>Retour</p>
