@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // document.addEventListener('DOMContentLoaded', () => {
 //     const searchIcon = document.querySelector('.search-icon');
 //     const searchBox = document.getElementById('search-box');
-//     const filterAllButton = document.getElementById('filter-all');
-//     const filterAnimationButton = document.getElementById('filter-animation');
-//     const filterMoviesButton = document.getElementById('filter-movies');
+//     // const filterAllButton = document.getElementById('filter-all');
+//     // const filterAnimationButton = document.getElementById('filter-animation');
+//     // const filterMoviesButton = document.getElementById('filter-movies');
 //     let filterType = 'all'; // Type de filtre par défaut
 
 //     // Bascule la visibilité de la barre de recherche lors du clic sur l'icône
@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
 //         const searchBox = document.getElementById('search-box');
 //         const form = document.getElementById('searchForm');
 //         let filterType = 'all'; // Type de filtre par défaut
-
+    
 //         // Ajoute un événement au clic sur l'icône de recherche
 //         searchIcon.addEventListener('click', () => {
 //             searchBox.classList.toggle('active'); // Ajoute ou supprime la classe active
 //             searchBox.focus(); // Focalise la barre de recherche pour permettre la saisie de texte
 //         });
-
+    
 //         // Gestion de l'événement "keydown" sur la barre de recherche
 //         searchBox.addEventListener('keydown', (event) => {
 //             if (event.key === 'Enter') {
@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
 //                 }
 //             }
 //         });
-
+    
 //         // Gestion de la soumission du formulaire
-//         form.addEventListener('submit', function (event) {
+//         form.addEventListener('submit', function(event) {
 //             event.preventDefault(); // Empêche le rechargement de la page
 //             const searchQuery = searchBox.value.trim();
 //             if (searchQuery) {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //             }
 //         });
 //     });
-
+    
 
 //     // Événements de clic sur les boutons de filtre
 //     filterAllButton.addEventListener('click', () => {
@@ -97,15 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // // Événements de soumission et de recherche
-// // Gestion des filtres pour la recherche
-// function applyFilter(newFilterType) {
-//     filterType = newFilterType;
-//     const searchQuery = searchBox.value.trim(); // Récupère la valeur actuelle de la barre de recherche
-//     if (searchQuery) {
-//         // Redirige vers la page des résultats avec la requête de recherche et le filtre appliqué
-//         window.location.href = `/html/resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}&filter=${filterType}`;
+//     // Gestion des filtres pour la recherche
+//     function applyFilter(newFilterType) {
+//         filterType = newFilterType;
+//         const searchQuery = searchBox.value.trim(); // Récupère la valeur actuelle de la barre de recherche
+//         if (searchQuery) {
+//             // Redirige vers la page des résultats avec la requête de recherche et le filtre appliqué
+//             window.location.href = `/html/resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}&filter=${filterType}`;
+//         }
 //     }
-// }
 
 
 // input.addEventListener('keyup', event => {
@@ -115,38 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //     }
 // });
 
-// largeSearchBox.addEventListener('keyup', event => {
-//     if (event.key === 'Enter') {
-//         const searchQuery = largeSearchBox.value.trim();
-//         search(searchQuery);
-//     }
-// });
 
-// largeSearchButton.addEventListener('click', () => {
-//     const searchQuery = largeSearchBox.value.trim();
-//     search(searchQuery);
-// });
 
-// // Événements de clic sur les boutons de filtre
-// filterAllButton.addEventListener('click', () => {
-//     filterType = 'all';
-//     const searchQuery = largeSearchBox.value.trim() || input.value.trim();
-//     search(searchQuery);
-// });
 
-// filterAnimationButton.addEventListener('click', () => {
-//     filterType = 'animation';
-//     const searchQuery = largeSearchBox.value.trim() || input.value.trim();
-//     search(searchQuery);
-// });
 
-// filterMoviesButton.addEventListener('click', () => {
-//     filterType = 'movies';
-//     const searchQuery = largeSearchBox.value.trim() || input.value.trim();
-//     search(searchQuery);
-// });
-
-// Charger les résultats lorsque la page est chargée
+// // Charger les résultats lorsque la page est chargée
 window.addEventListener('load', loadResults);
 
 
@@ -307,12 +280,12 @@ fetchFilms(currentPageFilm);
 // Filtre barre de recherche avec tmdb
 const form = document.getElementById('searchForm');
 const input = document.getElementById('search-box'); // Petite barre de recherche
-const largeSearchBox = document.getElementById('large-search-box');
+// const largeSearchBox = document.getElementById('large-search-box');
 const results = document.getElementById('results');
 const filterAllButton = document.getElementById('filter-all');
 const filterAnimationButton = document.getElementById('filter-animation');
 const filterMoviesButton = document.getElementById('filter-movies');
-const largeSearchButton = document.getElementById('large-search-button'); // Nouveau bouton de recherche pour la grande barre
+// const largeSearchButton = document.getElementById('large-search-button'); // Nouveau bouton de recherche pour la grande barre
 
 let _imageBaseUrl, _imageSizes;
 let filterType = 'all'; // Type de filtre par défaut

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/styleform.css">
+    <link rel="stylesheet" href="/assets/css/dashbordAdmin.css">
+
     <link rel="icon" type="image/png" sizes="16x16"
         href="/RetroToon/assets/images/Design_sans_titre-removebg-preview_2.png"> <!-- pour logo fenetre -->
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
@@ -26,7 +27,7 @@
     <main>
         <section class="gestionVideo">
 
-            <div class=" buttonGestionVideo">
+            <div class=" button-container">
             <button type="submit" onclick="filtreFilms()">Films</button>
             <button type="submit" onclick="filtreSerie()">Serie</button>
             <button type="submit" onclick="filtreRecherche()">Rechercher</button>
@@ -47,10 +48,10 @@
                 </tbody>
             </table>
 
-        <div class="buttonGestionVideo">
-            <button type="submit" onclick="ajouterNouvelleVideo()">Ajouter une video</button>
+        <div class="button-container">
+            <button type="button" onclick="window.location.href='uploadVideo.html'">Ajouter une vidéo</button>
             <button type="submit" onclick="mettreHorsLigne()">Mettre hors ligne</button>
-            <button type="submit" onclick="suprmierVideo()">Supprimer</button>
+            <button type="submit" onclick="supprimerVideo()">Supprimer</button>
             <button type="submit" onclick="changerLemplacement()">Changer l'emplacement</button>
    </div>
  </section>
