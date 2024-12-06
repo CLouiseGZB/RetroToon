@@ -573,6 +573,10 @@ select:focus {
     color: var(--beige);
 }
 
+#container-favoris-and-like>button:hover {
+    color: var(--corail);
+}
+
 /* .fa-heart,
 .fa-thumbs-up {
     font-size: 30px;
@@ -696,7 +700,7 @@ textarea:hover {
 
 textarea:focus {
     cursor: text;
-    border-color: var(--beige);
+    border-color: var(--corail);
     /*bordure ne s'agrandit pas */
 }
 
