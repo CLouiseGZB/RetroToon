@@ -28,85 +28,6 @@ function modeEnfant() {
 // Clé API pour accéder à l'API de The Movie Database (TMDB)
 const API_KEY = 'abedd43cf8d6083e8a33eafb9cc8b3f4';
 
-// **********************Carrousel Top 10
-let currentIndex = 0;  // Index actuel de la première slide visible
-const slidesToShow = 5;  // Nombre de slides visibles simultanément
-let totalSlides = 0;  // Initialisé à 0 jusqu'à ce que les slides soient ajoutées
-
-// Fonction pour mettre à jour la position du carrousel (sans animation de glissement)
-function updateCarouselPosition() {
-    const carouselContainer = document.querySelector('.carousel-container');
-    const slideWidth = document.querySelector('.carousel-slide').offsetWidth;  // Largeur d'un slide
-    carouselContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-}
-
-// Ajouter un event listener sur le bouton "prev"
-document.querySelector('.prev').addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex = Math.max(currentIndex - slidesToShow, 0);  // Déplacer vers l'arrière de 5 slides, sans dépasser le début
-        updateCarouselPosition();  // Mettre à jour la position du carrousel
-    }
-});
-
-// Ajouter un event listener sur le bouton "next"
-document.querySelector('.next').addEventListener('click', () => {
-    if (currentIndex < totalSlides - slidesToShow) {
-        currentIndex = Math.min(currentIndex + slidesToShow, totalSlides - slidesToShow);  // Avancer de 5 slides, sans dépasser la fin
-        updateCarouselPosition();  // Mettre à jour la position du carrousel
-    }
-});
-
-// Fonction pour récupérer le top 10 des séries animées entre 1970 et 2010 depuis l'API TMDB
-function fetchTopAnimatedSeries() {
-    const url = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=16&first_air_date.gte=1970-01-01&first_air_date.lte=2010-12-31&sort_by=popularity.desc&language=fr-FR&page=1`;
-
-    return fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            return data.results.slice(0, 10);  // Prendre les 10 meilleures séries
-        })
-        .catch(error => console.error('Erreur lors de la récupération des séries :', error));
-}
-
-// Fonction pour mettre à jour le carrousel avec les données de l'API
-function updateCarousel(series) {
-    const carouselContainer = document.querySelector('.carousel-container');
-    carouselContainer.innerHTML = '';  // Vider le carrousel
-
-    series.forEach((serie, index) => {
-        const slide = document.createElement('div');
-        slide.classList.add('carousel-slide');
-
-        // Générer le contenu de chaque slide
-        slide.innerHTML = `
-            <img src="/assets/images/${index + 1}.png" alt="Numéro ${index + 1}" class="number-image">
-            <img src="https://image.tmdb.org/t/p/w500${serie.poster_path}" alt="${serie.name}" class="main-image">
-        `;
-
-        // Ajouter le slide dans le conteneur du carrousel
-        carouselContainer.appendChild(slide);
-    });
-
-    // Mettre à jour le total des slides après l'ajout
-    totalSlides = document.querySelectorAll('.carousel-slide').length;
-    currentIndex = 0;  // Réinitialiser l'index au début
-    updateCarouselPosition();  // Initialiser la position
-}
-
-// Charger les données de TMDB à l'ouverture de la page
-document.addEventListener('DOMContentLoaded', () => {
-    fetchTopAnimatedSeries().then(series => updateCarousel(series));
-});
-
-
-
-
-
-
-
-
-
-
 // ***********************Pages séries
 let selectedGenre = '';  // Genre secondaire sélectionné
 let selectedAnnee = '';   // Plage d'années sélectionnée
@@ -461,14 +382,14 @@ let filterType = 'all'; // Type de filtre par défaut
 
 // Obtenez les configurations d'image au chargement de la page
 fetch(`https://api.themoviedb.org/3/configuration?api_key=${API_KEY}`)
-    .then(response => response.json())
-    .then(data => {
-        _imageBaseUrl = data.images.base_url;
-        _imageSizes = data.images.poster_sizes;
-    })
-    .catch(error => console.error('Erreur lors de la récupération des configurations :', error));
+  .then(response => response.json())
+  .then(data => {
+    _imageBaseUrl = data.images.base_url;
+    _imageSizes = data.images.poster_sizes;
+  })
+  .catch(error => console.error('Erreur lors de la récupération des configurations :', error));
 
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const query = new URLSearchParams(window.location.search).get('query');
     const filter = new URLSearchParams(window.location.search).get('filter') || 'all'; // Par défaut 'all'
 
@@ -561,6 +482,8 @@ function buildResultsHeader(type, count) {
 }
 
 // Construire un élément pour un film
+// Fonction pour construire un élément de film
+// Fonction pour construire un élément de film
 function buildMovieElement(movie) {
     const posterPath = movie.poster_path ? getMoviePoster(movie.poster_path) : 'https://via.placeholder.com/200x300?text=No+Image';
     const releaseYear = movie.release_date ? new Date(movie.release_date).getFullYear() : 'Année inconnue';
@@ -574,7 +497,7 @@ function buildMovieElement(movie) {
     </div>`;
 }
 
-// Construire un élément pour une série TV
+// Fonction pour construire un élément de série TV
 function buildTVShowElement(tvShow) {
     const posterPath = tvShow.poster_path ? getMoviePoster(tvShow.poster_path) : 'https://via.placeholder.com/200x300?text=No+Image';
     const firstAirYear = tvShow.first_air_date ? new Date(tvShow.first_air_date).getFullYear() : 'Année inconnue';
@@ -588,51 +511,119 @@ function buildTVShowElement(tvShow) {
     </div>`;
 }
 
+
+// Fonction utilitaire pour obtenir l'URL complète de l'affiche
+function getMoviePoster(posterPath) {
+    return `https://image.tmdb.org/t/p/w500${posterPath}`;
+}
+
+
 // Construire l'URL de l'image du film
 function getMoviePoster(imagePath) {
     if (!_imageBaseUrl || !_imageSizes || _imageSizes.length === 0) {
         return 'https://via.placeholder.com/200x300?text=No+Image';
     }
+    return `${_imageBaseUrl}${_imageSizes[2]}${imagePath}`; // Utiliser la taille d'image par défaut
+}
 
-    // Gestionnaire d'événements pour le bouton suivant
-    nextButton.addEventListener('click', () => {
-        if (currentSlide < slides.length - 1) {
-            currentSlide++;
-        } else {
-            currentSlide = 0; // Revenir à la première diapositive
-        }
-        updateSlidePosition();
+
+// Charger les résultats basés sur la requête URL
+function loadResults() {
+    const query = getQueryParam('query');
+    if (query) {
+        search(query);
+    }
+}
+
+// *************************barre de recherche
+document.addEventListener('DOMContentLoaded', () => {
+    const searchIcon = document.querySelector('.search-icon');
+    const searchBox = document.getElementById('search-box');
+    const filterAllButton = document.getElementById('filter-all');
+    const filterAnimationButton = document.getElementById('filter-animation');
+    const filterMoviesButton = document.getElementById('filter-movies');
+    let filterType = 'all'; // Type de filtre par défaut
+
+    // Bascule la visibilité de la barre de recherche lors du clic sur l'icône
+    searchIcon.addEventListener('click', () => {
+        searchBox.classList.toggle('active'); // Ajoute ou supprime la classe active
+        searchBox.focus(); // Focalise la barre de recherche pour permettre la saisie de texte
     });
 
-    // Gestionnaire d'événements pour le bouton précédent
-    prevButton.addEventListener('click', () => {
-        if (currentSlide > 0) {
-            currentSlide--;
-        } else {
-            currentSlide = slides.length - 1; // Revenir à la dernière diapositive
+    // Gère l'événement "Enter" pour déclencher la recherche avec le filtre actuel
+    searchBox.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Empêche le rechargement de la page
+            const searchQuery = searchBox.value.trim(); // Récupère la valeur de la barre de recherche
+            if (searchQuery) {
+                // Redirige vers la page des résultats avec la requête de recherche et le filtre
+                window.location.href = `resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}&filter=${filterType}`;
+            }
         }
-        updateSlidePosition();
     });
-};
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchIcon = document.querySelector('.search-icon');
+        const searchBox = document.getElementById('search-box');
+        const form = document.getElementById('searchForm');
+        let filterType = 'all'; // Type de filtre par défaut
+    
+        // Ajoute un événement au clic sur l'icône de recherche
+        searchIcon.addEventListener('click', () => {
+            searchBox.classList.toggle('active'); // Ajoute ou supprime la classe active
+            searchBox.focus(); // Focalise la barre de recherche pour permettre la saisie de texte
+        });
+    
+        // Gestion de l'événement "keydown" sur la barre de recherche
+        searchBox.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const searchQuery = searchBox.value.trim();
+                if (searchQuery) {
+                    // Redirige vers la page des résultats avec la requête de recherche et le filtre
+                    window.location.href = `/html/resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}&filter=${filterType}`;
+                }
+            }
+        });
+    
+        // Gestion de la soumission du formulaire
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+            const searchQuery = searchBox.value.trim();
+            if (searchQuery) {
+                // Redirige vers la page des résultats avec la requête de recherche et le filtre
+                window.location.href = `/html/resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}&filter=${filterType}`;
+            }
+        });
+    });
+    
+
+    // Événements de clic sur les boutons de filtre
+    filterAllButton.addEventListener('click', () => {
+        applyFilter('all');
+    });
+
+    filterAnimationButton.addEventListener('click', () => {
+        applyFilter('animation');
+    });
+
+    filterMoviesButton.addEventListener('click', () => {
+        applyFilter('movies');
+    });
+});
+
 
 
 // Événements de soumission et de recherche
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('form-id');
-    const input = document.getElementById('search-input-id');
-
-    if (form) {
-        form.addEventListener('submit', event => {
-            event.preventDefault(); // Empêche le rechargement de la page par défaut
-            const searchQuery = input.value.trim();
-            if (searchQuery) {
-                // Redirige vers la page des résultats en ajoutant la requête de recherche à l'URL
-                window.location.href = `resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}`;
-            }
-        });
+    // Gestion des filtres pour la recherche
+    function applyFilter(newFilterType) {
+        filterType = newFilterType;
+        const searchQuery = searchBox.value.trim(); // Récupère la valeur actuelle de la barre de recherche
+        if (searchQuery) {
+            // Redirige vers la page des résultats avec la requête de recherche et le filtre appliqué
+            window.location.href = `/html/resultas-barre-de-recherche.html?query=${encodeURIComponent(searchQuery)}&filter=${filterType}`;
+        }
     }
-});
-
 
 
 input.addEventListener('keyup', event => {
