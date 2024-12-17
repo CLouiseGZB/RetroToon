@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Gestion de la soumission du formulaire
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault(); // Empêche le rechargement de la page
         const searchQuery = searchBox.value.trim();
         if (searchQuery) {
@@ -71,6 +71,8 @@ const titleOnVideoContainer = document.getElementById('title-video-container');
 const thumbSlider = document.getElementById('thumb-slider');
 const favoriteButton = document.getElementById('favorite-button');
 const likeButton = document.getElementById('like-button');
+const heartIcon = document.getElementById('heart-icon');
+const favoriteIcon = document.getElementById('favorite-icon');
 const frame = document.getElementById('frame-video-title-controls');
 
 //fonction pour initialiser le player 
@@ -247,12 +249,14 @@ favoriteButton.addEventListener('click', () => {
 
     if (favorite) {
         //afficher l'icone "favoris" (coeur plein)
-        favoriteButton.innerHTML = '<p>Favoris <i class="fi fi-sr-heart"></i></p>';
-        favoriteButton.style = 'color: #EB7A57';
+        heartIcon.classList.remove("fi", "fi-rr-heart");
+        heartIcon.classList.add("fi", "fi-sr-heart");
+        heartIcon.style.color = ' #EB7A57';
     } else {
         //afficher l'icone "favoris" (coeur vide)
-        favoriteButton.innerHTML = '<p>Favoris <i class="fi fi-rr-heart"></i></p>';
-        favoriteButton.style = 'color: #FFFAE0';
+        heartIcon.classList.remove("fi", "fi-sr-heart");
+        heartIcon.classList.add("fi", "fi-rr-heart");
+        heartIcon.style.color = ' #FFFAE0';
 
     }
 });
@@ -264,12 +268,14 @@ likeButton.addEventListener('click', () => {
 
     if (liked) {
         // Afficher l'icône "like" (pouce levé plein)
-        likeButton.innerHTML = '<p>Like <i class="fi fi-sr-feedback-review"></i></p>';
-        likeButton.style = 'color: #EB7A57';
+        favoriteIcon.classList.remove("fi", "fi-tr-feedback-review");
+        favoriteIcon.classList.add("fi", "fi-sr-feedback-review");
+        favoriteIcon.style.color = ' #EB7A57';
     } else {
         // Afficher l'icône "unlike" (pouce levé vide)
-        likeButton.innerHTML = '<p>Like <i class="fi fi-tr-feedback-review"></i></p>';
-        likeButton.style = 'color: #FFFAE0';
+        favoriteIcon.classList.remove("fi", "fi-sr-feedback-review");
+        favoriteIcon.classList.add("fi", "fi-tr-feedback-review");
+        favoriteIcon.style.color = ' #FFFAE0';
 
     }
 });
