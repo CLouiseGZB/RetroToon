@@ -139,13 +139,6 @@ function updateProgress() {
     console.log(progressBar.value);
 }
 
-//TEMPS MIS À JOUR LORS DU CLIC SUR LA BARRE DE PROGRESSION
-// progressBar.addEventListener("click", function (e) {
-//     let progressWidth = progressBar.clientWidth;
-//     let clickedPosition = e.offsetX;
-//     let clickedTime = (clickedPosition / progressWidth) * video;
-//     video.currentTime = clickedTime;
-// })
 
 // Permet de cliquer sur la barre pour changer l'avancement de la vidéo
 progressBar.addEventListener('input', () => {
@@ -219,55 +212,32 @@ function setVolume() {
 
 }
 
-/* Fonction pour mettre à jour la couleur de la piste */
-//   volumeSlider.addEventListener('input', function() {
-//     const value = this.value;
-//     const max = this.max;
-
-//     /* Calculer le pourcentage de la valeur actuelle */
-//     const percentage = (value / max) * 100;
-
-//     /* Mettre à jour la couleur de la piste en utilisant un dégradé linéaire */
-//     this.style.background = `linear-gradient(to right, #4CAF50 ${percentage}%, #ccc ${percentage}%)`;
-//   });
-
-// volumeSlider.addEventListener('input', function(){
-//     video.volume = volumeSlider.value;
-// })
-
 
 //FRAME QUI CONTIENT LES CONTROLS ET TITRE, EST CACHÉE LORS DU PASSAGE DE LA SOURIS
-// videoContainer.addEventListener('mouseover', () => {
-//     frame.style.opacity = 1;
-// })
+videoContainer.addEventListener('mouseover', () => {
+    frame.style.opacity = 1;
+})
 
-// videoContainer.addEventListener('mouseleave', () => {
-//     frame.style.opacity = 0;
-// })
+videoContainer.addEventListener('mouseleave', () => {
+    frame.style.opacity = 0;
+})
 
-//FRAME QUI DISPARAIT AU BOUT DE TROIS SECONDES QUAND ON EST PLEIN ÉCRAN
-// let controlsTimeout;
-// let mouseMoveTimeout;
-// // Afficher les contrôles lorsque la souris bouge sur la vidéo
-// videoContainer.addEventListener('mousemove', () => {
-//     clearTimeout(controlsTimeout);
-//     clearTimeout(mouseMoveTimeout);
+// FRAME QUI DISPARAIT AU BOUT DE TROIS SECONDES QUAND ON EST PLEIN ÉCRAN
+let controlsTimeout;
+let mouseMoveTimeout;
+// Afficher les contrôles lorsque la souris bouge sur la vidéo
+videoContainer.addEventListener('mousemove', () => {
+    clearTimeout(controlsTimeout);
+    clearTimeout(mouseMoveTimeout);
 
-//     frame.style.opacity = 1; // Afficher les contrôles
+    frame.style.opacity = 1; // Afficher les contrôles
 
-//     // Cacher les contrôles si la souris ne bouge plus après 2 secondes
-//     mouseMoveTimeout = setTimeout(() => {
-//         frame.style.opacity = 0;
-//     }, 3000);
-// });
+    // Cacher les contrôles si la souris ne bouge plus après 2 secondes
+    mouseMoveTimeout = setTimeout(() => {
+        frame.style.opacity = 0;
+    }, 3000);
+});
 
-// Masque les contrôles avec un délai lorsque la souris quitte la vidéo
-// videoContainer.addEventListener('mouseleave', () => {
-//     clearTimeout(mouseMoveTimeout);
-//     controlsTimeout = setTimeout(() => {
-//         frame.style.opacity = 0;
-//     }, 3000);
-// });
 
 /************ FAVORITE AND LIKE SECTION ************/
 // BOUTON COEUR
@@ -277,11 +247,11 @@ favoriteButton.addEventListener('click', () => {
 
     if (favorite) {
         //afficher l'icone "favoris" (coeur plein)
-        favoriteButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
+        favoriteButton.innerHTML = '<p>Favoris <i class="fi fi-sr-heart"></i></p>';
         favoriteButton.style = 'color: #EB7A57';
     } else {
         //afficher l'icone "favoris" (coeur vide)
-        favoriteButton.innerHTML = '<i class="fa-regular fa-heart"></i>';
+        favoriteButton.innerHTML = '<p>Favoris <i class="fi fi-rr-heart"></i></p>';
         favoriteButton.style = 'color: #FFFAE0';
 
     }
@@ -294,11 +264,11 @@ likeButton.addEventListener('click', () => {
 
     if (liked) {
         // Afficher l'icône "like" (pouce levé plein)
-        likeButton.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>';
+        likeButton.innerHTML = '<p>Like <i class="fi fi-sr-feedback-review"></i></p>';
         likeButton.style = 'color: #EB7A57';
     } else {
         // Afficher l'icône "unlike" (pouce levé vide)
-        likeButton.innerHTML = '<i class="fa-regular fa-thumbs-up"></i>';
+        likeButton.innerHTML = '<p>Like <i class="fi fi-tr-feedback-review"></i></p>';
         likeButton.style = 'color: #FFFAE0';
 
     }
