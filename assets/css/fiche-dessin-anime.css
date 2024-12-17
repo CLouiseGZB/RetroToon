@@ -39,6 +39,16 @@ section {
     margin-left: auto;
 }
 
+h2 {
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--beige);
+    font-size: var(--font-size-title);
+    margin: 40px 0px 20px 0px;
+    letter-spacing: 2px;
+}
+
 #main-content {
     margin-left: auto;
     margin-right: auto;
@@ -277,7 +287,7 @@ section {
     left: 0;
     right: 0;
 
-    opacity: 0;
+    opacity: 1;
     transition: opacity 1s ease;
 }
 
@@ -495,17 +505,6 @@ video::-webkit-media-controls-enclosure {
 }
 
 /************ DESCRIPTION ************/
-
-#description h2 {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--beige);
-    font-size: var(--font-size-title);
-    margin-top: 75px;
-    letter-spacing: 2px;
-}
-
 #description p {
     font-family: "Fredoka", sans-serif;
     font-optical-sizing: auto;
@@ -521,7 +520,6 @@ video::-webkit-media-controls-enclosure {
     justify-content: space-between;
     /* border: 1px solid red; */
 }
-
 
 select {
     font-family: "Fredoka", sans-serif;
@@ -577,33 +575,23 @@ select:focus {
     color: var(--corail);
 }
 
-/* .fa-heart,
+#favorite-button,
+#like-button {
+    border: 1px solid var(--beige);
+    border-radius: 4px;
+    height: 35px;
+    width: 140px;
+    padding: 0px 10px 0px 10px;
+}
+.fa-heart,
 .fa-thumbs-up {
-    font-size: 30px;
+    font-size: 25px;
     color: var(--beige);
     margin-top: 10px;
     cursor: pointer;
-} */
+}
 
 /************ COMMENTAIRES ************/
-#commentaires {
-    width: 90%;
-}
-
-#description {
-    width: 90%;
-}
-
-#commentaires h2 {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--beige);
-    font-size: var(--font-size-title);
-    margin-top: 75px;
-    letter-spacing: 2px;
-}
-
 #commentaires p {
     font-family: "Fredoka", sans-serif;
     font-optical-sizing: auto;
@@ -650,18 +638,6 @@ select:focus {
 }
 
 /************ VOTRE AVIS ************/
-
-#votre-avis h2 {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--beige);
-    font-size: var(--font-size-title);
-    margin: 25px 0px;
-    letter-spacing: 2px;
-    margin-left: 5%;
-}
-
 #votre-avis p {
     font-family: "Fredoka", sans-serif;
     font-optical-sizing: auto;
@@ -672,7 +648,11 @@ select:focus {
 }
 
 #votre-avis .user-comment-row {
-    margin: 0px 0px 20px 5%;
+    margin: 20px 0px 20px 0px;
+}
+
+.container-textarea {
+    text-align: center;
 }
 
 textarea {
@@ -691,7 +671,8 @@ textarea {
     font-weight: 400;
     font-size: var(--font-size-paragraph);
     line-height: 1.5;
-    margin-left: 5%;
+    display: block;
+    margin: auto;
 }
 
 textarea:hover {
@@ -728,16 +709,6 @@ button[type="submit"]:focus {
 }
 
 /************ NOS SUGGESTIONS ************/
-#nos-suggestions h2 {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--beige);
-    font-size: var(--font-size-title);
-    margin: 50px 0 30px 5%;
-    letter-spacing: 2px;
-}
-
 /* CODE DE LOUISIANE */
 #historique-container,
 #series-container {
@@ -1035,7 +1006,13 @@ footer a {
 }
 
 /************ RESPONSIVE ************/
-@media (max-width: 767px) {
+@media (max-width: 1026px) {
+    #main-content {
+        max-width: 950px;
+    }
+}
+
+@media (max-width: 768px) {
 
     /*** TOP NAV BAR ***/
     #menu {
@@ -1106,9 +1083,10 @@ footer a {
         color: #E28B70;
     }
 
-    /*DESCRIPTION SELECT*/
-    .select-container-row {
-        margin: 25px auto 0px auto;
+    /***********/
+
+    #main-content {
+        max-width: 725px;
     }
 
     /* SECTION VIDEO */
@@ -1126,10 +1104,62 @@ footer a {
         /*vidéo s'adaptera à la largeur de son conteneur */
     }
 
+    /* PROGRESS BAR AND THUMB SLIDER*/
+    #container-progress-bar {
+        width: 80%;
+        height: 5px;
+    }
+
+    #thumb-slider {
+        top: -3px;
+    }
+
+    /* apparence du thumb slider */
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 10px;
+        height: 10px;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+    }
+
+    #time-progression-container {
+        font-size: 12px;
+    }
+
+    /* TOP CONTROLS */
+    #top-controls {
+        bottom: -70px;
+    }
+
+    /* BOTTOM CONTROLS */
+    #bottom-controls {
+        bottom: -5px;
+    }
+
+    #btn-en-arriere,
+    #btn-en-avant {
+        display: none;
+    }
+
     #progress-bar {
         width: 100%;
         /* le slider de la barre de progression s'adapte aussi à la largeur */
     }
+
+    .fa-volume-xmark,
+    .fa-volume-low,
+    .fa-volume-high {
+        visibility: hidden;
+    }
+
+    #volume-slider {
+        display: none;
+    }
+
 
     /* FOOTER */
     footer {
@@ -1147,4 +1177,211 @@ footer a {
     }
 }
 
-@media (max-width: 345px) {}
+@media (max-width: 427px) {
+
+    /* Police de l'écriture de la vidéo */
+    #principal-video h1 {
+        font-size: 16px;
+    }
+
+    /* PROGRESS BAR AND THUMB SLIDER*/
+    #container-progress-bar {
+        width: 70%;
+        height: 5px;
+    }
+
+    .fa-pause,
+    .fa-play,
+    .fa-volume-xmark,
+    .fa-volume-low,
+    .fa-volume-high,
+    .fa-expand,
+    .fa-compress {
+        font-size: 20px;
+    }
+
+    /* BOTTOM CONTROLS */
+    #bottom-controls {
+        bottom: -20px;
+    }
+
+    /*  */
+    #container-select-boxes-and-favorite-likes {
+        flex-direction: column-reverse;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 376px) {
+
+    /* Police de l'écriture de la vidéo */
+    #principal-video h1 {
+        font-size: 16px;
+    }
+
+    /* PROGRESS BAR AND THUMB SLIDER*/
+    #container-progress-bar {
+        width: 65%;
+        height: 5px;
+    }
+
+    .fa-pause,
+    .fa-play,
+    .fa-volume-xmark,
+    .fa-volume-low,
+    .fa-volume-high,
+    .fa-expand,
+    .fa-compress {
+        font-size: 20px;
+    }
+
+    /* BOTTOM CONTROLS */
+    #bottom-controls {
+        bottom: -20px;
+    }
+}
+
+@media (max-width: 360px) {
+    p {
+        font-size: 10px;
+    }
+
+    /************ VIDEO PLAYER BOX ************/
+    /* Police de l'écriture de la vidéo */
+    #principal-video h1 {
+        font-size: 16px;
+    }
+
+    /*VIDEO CONTAINER*/
+    #principal-video {
+        padding: 2rem;
+        /* border: 1px solid green; */
+    }
+
+    #video-container {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 150px);
+        /* overflow: hidden; */
+        margin-top: 50px;
+        /* border: 1px solid yellow; */
+    }
+
+    #video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+        position: relative;
+        background-color: #000;
+    }
+
+    #video-controls-container {
+        height: 50px;
+        background: linear-gradient(to top, #000, transparent);
+        position: absolute;
+        bottom: -1px;
+        width: 100%;
+
+        /* opacity: 0;
+    transition: opacity 1s ease; */
+        border: 2px solid white;
+    }
+
+    #video-container:fullscreen {
+        width: 100vw;
+        /* La vidéo occupe toute la largeur de l'écran */
+        height: 100vh;
+        /* La vidéo occupe toute la hauteur de l'écran */
+        position: relative;
+    }
+
+    #video-controls-container:fullscreen {
+        width: 100%;
+        /* Les contrôles occupent toute la largeur de l'écran */
+        position: absolute;
+        bottom: 0;
+        /* Positionnez les contrôles en bas de la vidéo */
+        z-index: 10000;
+        /* Assurez-vous que les contrôles sont toujours au-dessus */
+    }
+
+    /* TOP CONTROLS */
+    #top-controls {
+        bottom: -30px;
+    }
+
+    /* PROGRESS BAR AND THUMB SLIDER*/
+    #container-progress-bar {
+        width: 60%;
+        height: 5px;
+    }
+
+    #progress-bar {
+        height: 100%;
+        background-color: var(--beige);
+        border-radius: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 0.1s ease;
+        z-index: 1;
+        /* la barre de progression est en dessous */
+    }
+
+    #thumb-slider {
+        top: -3px;
+    }
+
+    /* apparence du thumb slider */
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 10px;
+        height: 10px;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+    }
+
+    #time-progression-container {
+        font-size: 10px;
+    }
+
+    /* ICONES DU PLAYER : #btn-en-arriere, #btn-en-avant, .fa-pause,
+.fa-play, .fa-volume-xmark, .fa-volume-high, .fa-expand, .fa-compress */
+    .fa-pause,
+    .fa-play,
+    .fa-volume-xmark,
+    .fa-volume-low,
+    .fa-volume-high,
+    .fa-expand,
+    .fa-compress {
+        font-size: 15px;
+    }
+
+    /* BOTTOM CONTROLS */
+    #bottom-controls {
+        bottom: 10px;
+    }
+
+    /* DESCRIPTION */
+    select {
+        font-weight: 400;
+        background-size: 15px;
+        width: 140px;
+    }
+
+    #container-select-boxes-and-favorite-likes {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        /* border: 1px solid red; */
+    }
+
+    .fa-heart,
+    .fa-thumbs-up {
+        font-size: 25px;
+    }
+}

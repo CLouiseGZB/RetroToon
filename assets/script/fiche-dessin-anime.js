@@ -246,38 +246,28 @@ function setVolume() {
 // })
 
 //FRAME QUI DISPARAIT AU BOUT DE TROIS SECONDES QUAND ON EST PLEIN ÉCRAN
-let controlsTimeout;
-let mouseMoveTimeout;
-// Afficher les contrôles lorsque la souris bouge sur la vidéo
-videoContainer.addEventListener('mousemove', () => {
-    clearTimeout(controlsTimeout);
-    clearTimeout(mouseMoveTimeout);
+// let controlsTimeout;
+// let mouseMoveTimeout;
+// // Afficher les contrôles lorsque la souris bouge sur la vidéo
+// videoContainer.addEventListener('mousemove', () => {
+//     clearTimeout(controlsTimeout);
+//     clearTimeout(mouseMoveTimeout);
 
-    frame.style.opacity = 1; // Afficher les contrôles
+//     frame.style.opacity = 1; // Afficher les contrôles
 
-    // Cacher les contrôles si la souris ne bouge plus après 2 secondes
-    mouseMoveTimeout = setTimeout(() => {
-        frame.style.opacity = 0;
-    }, 3000);
-});
+//     // Cacher les contrôles si la souris ne bouge plus après 2 secondes
+//     mouseMoveTimeout = setTimeout(() => {
+//         frame.style.opacity = 0;
+//     }, 3000);
+// });
 
-// Masquer les contrôles avec un délai lorsque la souris quitte la vidéo
-videoContainer.addEventListener('mouseleave', () => {
-    clearTimeout(mouseMoveTimeout);
-    controlsTimeout = setTimeout(() => {
-        frame.style.opacity = 0;
-    }, 3000);
-});
-
-// Masquer les contrôles avec un délai lorsque la souris quitte le conteneur des contrôles
-videoContainer.addEventListener('mouseleave', () => {
-    clearTimeout(mouseMoveTimeout);
-    controlsTimeout = setTimeout(() => {
-        frame.style.opacity = 0;
-    }, 3000);
-});
-
-
+// Masque les contrôles avec un délai lorsque la souris quitte la vidéo
+// videoContainer.addEventListener('mouseleave', () => {
+//     clearTimeout(mouseMoveTimeout);
+//     controlsTimeout = setTimeout(() => {
+//         frame.style.opacity = 0;
+//     }, 3000);
+// });
 
 /************ FAVORITE AND LIKE SECTION ************/
 // BOUTON COEUR
