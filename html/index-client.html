@@ -57,12 +57,23 @@
             </div>
         </nav>
     </header>
+
     <div class="tab-bar">
-        <a href="index-client.html"><i class="fa-solid fa-house"></i></a>
-        <a href="#"><i class="fi fi-rr-clapperboard-play"></i></a>
-        <a href="#"><i class="fi fi-rr-tv-retro"></i></a>
-        <a href="years.html"><i class="fi fi-rr-90s-music-disc"></i></i></a>
-        <a href="#"><i class="fi fi-rr-heart"></i></a>
+        <a href="index-client.html" >
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <a href="series.html">
+            <i class="fi fi-rr-tv-retro"></i>
+        </a>
+
+        <a href="films.html">
+            <i class="fi fi-rr-clapperboard-play"></i>
+        </a>
+
+        <a href="#">
+            <i class="fi fi-rr-heart"></i>
+        </a>
+
         <a href="#" class="icon dropdown-arrow" id="accountToggle">
             <i class="fa-solid fa-user"></i>
         </a>
@@ -70,12 +81,12 @@
 
     <main>
         <section id="player">
-            <video width="100%" height="700" autoplay loop playsinline>
+            <video width="100%" height="550" autoplay loop playsinline>
                 <source src="/assets/images/Shrek 4, il était une fin - Extrait ＂Le contrat＂ [VF｜HD] (online-video-cutter.com).mp4" type="video/mp4">
             </video>
             
             <div class="overlay-content">
-                <img src="/assets/images/Shrek4.png" alt="logo_titre_shrek4" width="400">
+                <img src="/assets/images/Shrek4.png" alt="logo_titre_shrek4">
                 <p>Après avoir vaincu un méchant dragon, sauvé une belle princesse et le royaume de ses parents, que peut encore faire un ogre malodorant et mal léché ? Domestiqué, assagi, Shrek a perdu jusqu'à l'envie de rugir et regrette le bon vieux temps où il semait la terreur dans le royaume. Aujourd'hui, tel une idole déchue, il se contente de signer des autographes à tour de bras. Trop triste.</p>
                 <div id="overlay-button">
                     <button><i class="fa-solid fa-play"></i> Lecture</button>
@@ -88,7 +99,7 @@
             </div>
         </section>
 
-        <section id="affiche">
+        <!-- <section id="affiche">
             <h1>
                 éxclusivité
             </h1>
@@ -100,7 +111,7 @@
                 <img src="/assets/images/Angela4.jpg" alt="">
                 <img src="/assets/images/Angela5.jpg" alt="">
             </div>
-        </section>
+        </section> -->
 
         <section>
             <h2>
@@ -123,11 +134,14 @@
             </h2>
             <div class="animation-container">
                 <div class="arrow-left-animation"><i class="fi fi-bs-angle-left"></i></div>
-                <div class="carousel-container-animation" id="animation-films-container">
-                    <!-- Les films d'animation seront injectés ici par JavaScript -->
+                <div class="carousel-container-animation">
+                  <div class="carousel-track-animation" id="animation-films-container">
+                    <!-- JS injecte ici -->
+                  </div>
                 </div>
                 <div class="arrow-right-animation"><i class="fi fi-bs-angle-right"></i></div>
-            </div>
+              </div>
+              
         </section>
 
         <section>
@@ -163,7 +177,6 @@
         <P>Tous droits réservés © Retrotoon Group 2024</P>
     </footer>
 
-    <!-- <script src="https://kit.fontawesome.com/e5a9a83adf.js" crossorigin="anonymous"></script> -->
     <script src="/assets/script/index-client.js"></script>
     
 </body>

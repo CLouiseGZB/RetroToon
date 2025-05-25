@@ -312,29 +312,50 @@ footer a{
 }
 
 /* responsive mobile */
-@media (max-width: 767px) {
+@media (min-width: 320px) {
     .tab-bar {
         display: flex;
+align-items: center;
+    }
+    
+    .tab-bar a {
+        /* border: solid 1px red; */
+        height: 25px;
     }
 
-    #menu ul,
-    .account {
-        display: none;
-        /* Cache tous les éléments du menu */
+    .tab-bar > :first-child, .tab-bar > :last-child {
+        /* border: solid yellowgreen 1px; */
+        font-size: 20px;
+    }
+    
+
+    .entete img {
+        width: 90vw;
     }
 
-    .fi-rr-search .fi-rr-globe {
-        display: flex;
-        /* Affiche les icônes de navigation */
+    #filter-all{
+        padding: 0.4rem;
+    }
+
+    #filter-genre, #filter-annees{
+        width: 35vw;
+        padding: 0.4rem;
+    }
+
+   
+
+    #menu ul, .account,.icon .fi-rr-heart {
+        display: none; /* Cache tous les éléments du menu */
+    }
+
+    .fi-rr-search {
+        display: flex; /* Affiche les icônes de navigation */
         align-items: center;
     }
 
-    .fi-rr-globe {
-        margin-right: 15px;
-    }
 
-    .logo img {
-        width: 2rem;
+    .logo img{
+        width:  3rem;
     }
 
     .search-box.active {
@@ -342,14 +363,13 @@ footer a{
         height: 1.6rem;
         /* padding-block: 1px; */
         border-radius: 20px;
-        background: #EB7A57;
-        color: #FACA78;
-        text-indent: 0;
-        /* Affiche le texte lorsqu'elle est en focus */
+        background: #001429;
+        color: #FFFAE0;
+        text-indent: 0; /* Affiche le texte lorsqu'elle est en focus */
         padding-left: 40px;
     }
 
-    .search-icon i {
+    .search-icon i{
         font-size: 1.4rem;
     }
 
@@ -358,13 +378,12 @@ footer a{
         display: flex;
         justify-content: space-around;
         align-items: center;
-        background-color: #FACA78;
+        background-color: #FFFAE0;
         position: fixed;
         bottom: 0;
         width: 100vw;
         padding: 10px 0;
         z-index: 1000;
-        text-align: center;
     }
 
     .tab-bar a {
@@ -376,6 +395,8 @@ footer a{
     .tab-bar a:hover {
         color: #E28B70;
     }
+
+  
 
     /* Other adjustments for responsive design */
     header {
@@ -395,9 +416,8 @@ footer a{
         height: 2rem;
     }
 
-    .entete p {
-        background-color: #EB7A57;
-        color: #001D3D;
+    .entete img {
+        
         margin-top: 1rem;
         padding: 3px 10px;
         width: 50%;
@@ -456,3 +476,4 @@ footer a{
         font-size: 1rem;
     }
 }
+

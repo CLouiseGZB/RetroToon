@@ -89,7 +89,7 @@ if (seriesIds.includes(2808)) {
     linkContainer.appendChild(link);
 }
 //Carousel historique
-// Gestion du carrousel des séries historiques (flèches désactivées)
+// Gestion du carrousel des séries dans l'historique (flèches désactivées)
 document.addEventListener('DOMContentLoaded', function () {
     const seriesContainer = document.getElementById('historique-container');
 
@@ -174,130 +174,111 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchShows(); // Récupération des séries
 });
 
-// Gestion du carrousel des films (avec flèches activées)
-document.addEventListener('DOMContentLoaded', function () {
-    const animationFilmsContainer = document.getElementById('animation-films-container');
+// Carrousel Film
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('animation-films-container');
     const genreMap = {
-        16: 'Animation',
-        35: 'Comédie',
-        10751: 'Famille',
-        28: 'Action',
-        12: 'Aventure',
+      16: 'Animation', 35: 'Comédie', 10751: 'Famille', 28: 'Action', 12: 'Aventure'
     };
-
     const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=fr-FR&sort_by=popularity.desc&with_genres=16&release_date.gte=1970-01-01&release_date.lte=2010-12-31`;
+  
+    const itemsPerView = 5;  // fixe à 5
+    const maxMovies = 20;
     let allMovies = [];
+    let currentIndex = 0;
+    let itemWidth = 0;
+  
+    // Affichage des cartes
+    function renderCarouselItems() {
+      container.innerHTML = '';
+      allMovies.forEach((film, i) => {
+        const item = document.createElement('div');
+        item.className = 'animation-item';
+        item.style.backgroundImage = film.poster_path
+          ? `url(https://image.tmdb.org/t/p/w500${film.poster_path})`
+          : 'url(https://via.placeholder.com/500x750?text=No+Image)';
+  
+        const rank = document.createElement('div');
+        rank.className = 'animation-rank-badge';
+        rank.textContent = `Top ${i + 1}`;
+  
+        const content = document.createElement('div');
+        content.className = 'animation-body-item';
+  
+        const playIcon = document.createElement('div');
+        playIcon.className = 'animation-body-item-1';
+        playIcon.innerHTML = `<div class="play"><i class="fa-solid fa-play"></i></div>`;
+  
+        const info = document.createElement('div');
+        info.innerHTML = `
+          <div class="animation-title">${film.title}</div>
+          <div class="animation-properties">
+            <span class="match">${Math.round(film.vote_average * 10)}% Match</span> • 
+            <span class="year">${film.release_date?.split('-')[0] || 'N/A'}</span> • 
+            <span class="age-limit">${film.adult ? '18+' : '13+'}</span> • 
+            <span class="genres">${film.genre_ids.map(id => genreMap[id] || '').join(', ')}</span>
+          </div>
+        `;
+  
+        content.appendChild(info);
+  
+        item.appendChild(rank);
+        content.appendChild(playIcon);
 
-    // Fonction pour récupérer les films d'animation
-    function fetchAnimationFilms() {
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                allMovies = data.results;
-                initializeCarouselAnimation();
-                showAnimationItems(); // Afficher les éléments initiaux ici
-            })
-            .catch(error => {
-                console.error('Erreur lors de la récupération des films :', error);
-            });
+        item.appendChild(content);
+        container.appendChild(item);
+      });
+  
+      // Après rendu, récupérer la largeur d'un item + margin pour le calcul du translateX
+      const firstItem = container.querySelector('.animation-item');
+      if (firstItem) {
+        const style = getComputedStyle(firstItem);
+        const width = firstItem.offsetWidth;
+        const marginRight = parseInt(style.marginRight) || 0;
+        itemWidth = width + marginRight;
+      }
     }
-
-    // Fonction pour afficher les films dans le conteneur
-    function showAnimationItems(startIndex = 0) {
-        animationFilmsContainer.classList.add('hidden'); // Ajouter une classe pour masquer
-
-        // Réinitialiser le conteneur après une petite durée pour l'animation
-        setTimeout(() => {
-            animationFilmsContainer.innerHTML = ''; // Réinitialiser le conteneur
-            const itemsPerView = 6;
-
-            for (let i = startIndex; i < startIndex + itemsPerView && i < allMovies.length; i++) {
-                const film = allMovies[i];
-                const item = document.createElement('div');
-                item.classList.add('animation-item');
-                item.style.backgroundImage = film.poster_path
-                    ? `url(https://image.tmdb.org/t/p/w500${film.poster_path})`
-                    : 'url(https://via.placeholder.com/500x750?text=No+Image)';
-
-                // Créer le contenu
-                const bodyItem = document.createElement('div');
-                bodyItem.classList.add('animation-body-item');
-
-                const bodyItem1 = document.createElement('div');
-                bodyItem1.classList.add('animation-body-item-1');
-                bodyItem1.innerHTML = `<div class="play"><i class="fa-solid fa-play"></i></div>`;
-
-                const contentWrapper = document.createElement('div');
-                contentWrapper.classList.add('animation-content-wrapper');
-
-                const title = document.createElement('div');
-                title.classList.add('animation-title');
-                title.textContent = film.title;
-
-                const properties = document.createElement('div');
-                properties.classList.add('animation-properties');
-                const genreNames = film.genre_ids.map(id => genreMap[id] || '').join(', ');
-                const match = film.vote_average ? `${Math.round(film.vote_average * 10)}% Match` : 'N/A';
-                const releaseYear = film.release_date ? film.release_date.split('-')[0] : 'N/A';
-                const ageLimit = film.adult ? '18+' : '13+';
-
-                properties.innerHTML = `
-                    <span class="match">${match}</span>
-                    <span class="year">${releaseYear}</span>
-                    <span class="age-limit">${ageLimit}</span>
-                    <span class="genres">${genreNames}</span>
-                `;
-
-                contentWrapper.appendChild(title);
-                contentWrapper.appendChild(properties);
-                bodyItem.appendChild(bodyItem1);
-                bodyItem.appendChild(contentWrapper);
-                item.appendChild(bodyItem);
-                animationFilmsContainer.appendChild(item);
-            }
-
-            animationFilmsContainer.classList.remove('hidden'); // Retirer la classe cachée
-        }, 300); // Délai pour correspondre à la durée de la transition
-    }
-
-    fetchAnimationFilms();
-
-    function initializeCarouselAnimation() {
-        const prevButton = document.querySelector('.arrow-left-animation');
-        const nextButton = document.querySelector('.arrow-right-animation');
-
-        if (!prevButton || !nextButton) {
-            return; // Si les boutons ne sont pas trouvés, ne pas continuer
+  
+    // Mise à jour du décalage pour défiler par groupe de 5
+    function updateCarousel() {
+        const maxIndex = Math.max(0, allMovies.length - itemsPerView);
+    
+        // Bouclage avant
+        if (currentIndex > maxIndex) {
+          currentIndex = 0;
         }
-
-        let currentIndex = 0;
-        const itemsPerView = 6;
-
-        function showCurrentItems() {
-            showAnimationItems(currentIndex);
+        // Bouclage arrière
+        if (currentIndex < 0) {
+          currentIndex = maxIndex;
         }
-
-        nextButton.addEventListener('click', () => {
-            if (currentIndex + itemsPerView < allMovies.length) {
-                currentIndex += itemsPerView;
-            } else {
-                currentIndex = 0; // Revenir au début
-            }
-            showCurrentItems();
-        });
-
-        prevButton.addEventListener('click', () => {
-            if (currentIndex - itemsPerView >= 0) {
-                currentIndex -= itemsPerView;
-            } else {
-                currentIndex = Math.floor((allMovies.length - 1) / itemsPerView) * itemsPerView; // Retourner à la dernière page complète
-            }
-            showCurrentItems();
-        });
-
-        showCurrentItems(); // Afficher les éléments initiaux
-    }
-});
+    
+        const offset = -currentIndex * itemWidth;
+        container.style.transform = `translateX(${offset}px)`;
+      }
+  
+    // Chargement des films
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => {
+        allMovies = data.results.slice(0, maxMovies);
+        renderCarouselItems();
+        updateCarousel();
+      })
+      .catch(err => console.error('Erreur de chargement des films :', err));
+  
+    // Flèche droite (avance de 5)
+    document.querySelector('.arrow-right-animation')?.addEventListener('click', () => {
+      currentIndex += itemsPerView;
+      updateCarousel();
+    });
+  
+    // Flèche gauche (recule de 5)
+    document.querySelector('.arrow-left-animation')?.addEventListener('click', () => {
+      currentIndex -= itemsPerView;
+      updateCarousel();
+    });
+  });
+  
 
 // Carrousel séries
 document.addEventListener('DOMContentLoaded', function () {
@@ -431,7 +412,28 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchShows(); // Appeler la fonction pour récupérer les séries
 });
 
+// Gestion du swipe
+let startX = 0;
 
+container.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+container.addEventListener('touchend', (e) => {
+  const endX = e.changedTouches[0].clientX;
+  const diffX = startX - endX;
+
+  if (Math.abs(diffX) > 50) {
+    if (diffX > 0) {
+      // Swipe vers la gauche
+      currentIndex = (currentIndex + itemsPerView) % allMovies.length;
+    } else {
+      // Swipe vers la droite
+      currentIndex = (currentIndex - itemsPerView + allMovies.length) % allMovies.length;
+    }
+    updateCarousel();
+  }
+});
 
 
 
