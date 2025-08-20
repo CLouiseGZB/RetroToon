@@ -27,23 +27,37 @@ body {
 }
 
 /* Styles pour l'en-tête */
-header {
-    height: 695px;
-    position: relative;
-    overflow: hidden;
-    /* Assurer que les éléments internes se positionnent correctement */
+/* ===== Header en plein écran (desktop) + 70% en mobile ===== */
+header{
+  position: relative;
+  z-index: 0;          /* crée un contexte pour le ::before */
+  overflow: hidden;
+
+  /* plein écran */
+  height: 100vh;
+  height: 100dvh;      /* mieux pour mobile moderne */
+  min-height: 100vh;
+  min-height: 100dvh;
 }
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(/assets/images/Backgroung-header.jpg) no-repeat center/cover;
-    opacity: 1; 
-    z-index: -1; 
+
+header::before{
+  content: "";
+  position: absolute;
+  inset: 0;            /* top/right/bottom/left: 0 */
+  background: url("/assets/images/Backgroung-header.jpg") center / cover no-repeat;
+  z-index: -1;         /* derrière le contenu du header */
 }
+
+/* Mobile : header = 70% de la hauteur de l’écran */
+@media (max-width: 768px){
+  header{
+    height: 70vh;
+    height: 70dvh;
+    min-height: 70vh;
+    min-height: 70dvh;
+  }
+}
+
 
 hr {
     border: solid 1px #FFFAE0;
@@ -76,21 +90,31 @@ hr {
 }
 
 /* ********************bouton et titre header********* */
-.entete {
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: springgreen solid 1px; */
+
+}
+
+.entete-index {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 92%;
-    padding-top: 4rem;
+    /* height: fit-content; */
+    /* width: 30rem; */
+    /* padding-top: 1rem; */
+    /* border: solid 1px red; */
 }
 
-.entete h1 {
+.entete-index h1 {
     color: #FFFAE0;
     font-size: 42px;
 }
 
-.entete button {
+.entete-index button {
     height: 2.5rem;
     width: 7rem;
     margin-top: 10px;
@@ -104,34 +128,34 @@ hr {
     transition: border-color, color 0.3s;
 }
 
-.entete button:hover {
+.entete-index button:hover {
     border-color: #EB7A57;
     color: #EB7A57;
 }
 
-.entete button a {
+.entete-index button a {
     text-decoration: none;
     color: inherit;
 }
 
-.entete button a:visited {
+.entete-index button a:visited {
     color: inherit;
 }
 
-.entete p {
+.entete-index p {
     color: #FFFAE0;
     margin-top: 1rem;
     padding: 3px 10px;
     font-size: 18px;
 }
 
-.entete span a {
+.entete-index span a {
     color: #EB7A57;
     text-decoration: none;
     font-size: 18px;
 }
 
-.entete span a:hover{
+.entete-index span a:hover{
     color: #E28B70;
 }
 /* ************carrousel 10*********** */
@@ -251,229 +275,5 @@ h2 {
     letter-spacing: 2px;
 }
 
-/* ************************footer********************* */
-footer {
-    height: 300px;
-    background-color: #001D3D;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
 
-footer img {
-    width: 100px;
-    height: 100px;
-    margin-top: 20px;
-}
-
-#liste-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 0;
-}
-
-#liste-footer p {
-    margin: 0;
-    padding: 10px;
-    color: #FFFAE0;
-    font-family: Fredoka;
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-#liste-footer p:hover {
-    color: #EB7A57;
-}
-
-footer i {
-    font-size: 30px;
-    color: #FFFAE0;
-    padding: 10px;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-footer i:hover {
-    color: #EB7A57;
-}
-
-footer p {
-    color: #FFFAE0;
-    margin-top: 20px;
-    font-family: Fredoka;
-}
-footer a{
-    text-decoration: none;
-}
-
-/* responsive mobile */
-@media (min-width: 320px) {
-    .tab-bar {
-        display: flex;
-align-items: center;
-    }
-    
-    .tab-bar a {
-        /* border: solid 1px red; */
-        height: 25px;
-    }
-
-    .tab-bar > :first-child, .tab-bar > :last-child {
-        /* border: solid yellowgreen 1px; */
-        font-size: 20px;
-    }
-    
-
-    .entete img {
-        width: 90vw;
-    }
-
-    #filter-all{
-        padding: 0.4rem;
-    }
-
-    #filter-genre, #filter-annees{
-        width: 35vw;
-        padding: 0.4rem;
-    }
-
-   
-
-    #menu ul, .account,.icon .fi-rr-heart {
-        display: none; /* Cache tous les éléments du menu */
-    }
-
-    .fi-rr-search {
-        display: flex; /* Affiche les icônes de navigation */
-        align-items: center;
-    }
-
-
-    .logo img{
-        width:  3rem;
-    }
-
-    .search-box.active {
-        width: 160px;
-        height: 1.6rem;
-        /* padding-block: 1px; */
-        border-radius: 20px;
-        background: #001429;
-        color: #FFFAE0;
-        text-indent: 0; /* Affiche le texte lorsqu'elle est en focus */
-        padding-left: 40px;
-    }
-
-    .search-icon i{
-        font-size: 1.4rem;
-    }
-
-    /* Display the tab bar on small screens */
-    .tab-bar {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background-color: #FFFAE0;
-        position: fixed;
-        bottom: 0;
-        width: 100vw;
-        padding: 10px 0;
-        z-index: 1000;
-    }
-
-    .tab-bar a {
-        color: #001D3D;
-        font-size: 1.5rem;
-        text-decoration: none;
-    }
-
-    .tab-bar a:hover {
-        color: #E28B70;
-    }
-
-  
-
-    /* Other adjustments for responsive design */
-    header {
-        height: 60vh;
-    }
-
-    .entete h1 {
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 0 1rem;
-    }
-
-    .entete button {
-        font-size: 0.7rem;
-        padding: 0.3rem;
-        width: 5rem;
-        height: 2rem;
-    }
-
-    .entete img {
-        
-        margin-top: 1rem;
-        padding: 3px 10px;
-        width: 50%;
-        font-size: 35%;
-    }
-
-    .carousel {
-        width: 90%;
-    }
-
-    .carousel-slide {
-        flex: 0 0 100%;
-        /* Affiche une image à la fois sur les petits écrans */
-    }
-
-    .carousel-slide img {
-        flex: 0 0 100%;
-        /* Affiche une image à la fois sur les petits écrans */
-        width: 9rem;
-        height: 100%;
-    }
-
-    .carousel-control {
-        font-size: 2rem;
-        left: 10;
-        right: 10;
-        height: 20%;
-        width: 7%;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    .plateforms h2 {
-        font-size: 1.5rem;
-        text-align: center;
-    }
-
-    .plateforms img {
-        width: 100vw;
-    }
-
-    footer {
-        padding: 1rem;
-        text-align: center;
-        height: fit-content;
-    }
-
-    #liste-footer {
-        flex-direction: column;
-    }
-
-    #liste-footer p {
-        margin: 5px 0;
-        font-size: 1rem;
-    }
-}
 

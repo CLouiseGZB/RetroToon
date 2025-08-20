@@ -11,11 +11,16 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons/css/all/all.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style-client.css">
+    <link rel="stylesheet" href="/assets/css/navbar.css">
+    <link rel="stylesheet" href="/assets/css/searchbar.css">
+    <link rel="stylesheet" href="/assets/css/sub-navbar.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/carrousel.css">
 </head>
 
 <body>
-    <header>
-        <nav id="menu">
+    <nav id="menu">
             <!-- Logo à gauche -->
             <div class="logo">
                 <a href="index-client.html">
@@ -24,14 +29,14 @@
             </div>
         </nav>
 
-        <div class="entete">
+    <header>
+        <div class="entete-index">
             <h1>RETROTOON</h1>
             <button><a href="inscription.html">Inscription</a></button>
 
             <p>Vous êtes déjà inscrit.e ? <span>Connectez-vous <a href="connexion.html"> juste ici.</a>
                 </span></p>
         </div>
-
     </header>
 
     <div class="tab-bar">
@@ -58,9 +63,8 @@
 
     <main>
         <section class="top10">
-            <h2>Top 10</h2>
 
-            <div class="carousel" id="carousel0">
+            <!-- <div class="carousel" id="carousel0">
                 <button class="carousel-control prev">&#8249;</button>
                 <div class="carousel-container">
                     <div class="carousel-slide">
@@ -114,7 +118,15 @@
                     </div>
                 </div>
                 <button class="carousel-control next">&#8250;</button>
-            </div>
+            </div> -->
+
+  <h2>Top 10</h2>
+  <div class="carousel" data-carousel data-type="mixed" data-layout="portrait" style="--per-page:5">
+    <button class="nav prev" aria-label="Précédent" data-prev>❮</button>
+    <div class="viewport"><div class="track" data-track></div></div>
+    <button class="nav next" aria-label="Suivant" data-next>❯</button>
+  </div>
+
 
             <hr>
         </section>
@@ -141,7 +153,8 @@
         </nav>
         <P>Tous droits réservés © Retrotoon Group 2024</P>
     </footer>
-    <script src="/assets/script/top10.js"></script>
+    <script src="/assets/script/carrousel.js"></script>
+    <script src="/assets/script/searchbar.js"></script>
 </body>
 
 </html>

@@ -17,12 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ;
 
-// **************Mode enfant
-function modeEnfant() {
-    // Basculer entre le mode Enfant et Adulte en ajoutant ou supprimant la classe 'mode-enfant'
-    document.body.classList.toggle('mode-enfant');
-}
-
 // Filtre barre de recherche avec tmdb
 const API_KEY = 'abedd43cf8d6083e8a33eafb9cc8b3f4';
 
