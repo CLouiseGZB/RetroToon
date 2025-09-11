@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/style-client.css">
+    <link rel="stylesheet" href="/assets/css/navbar.css">
+    <link rel="stylesheet" href="/assets/css/searchbar.css">
+    <link rel="stylesheet" href="/assets/css/sub-navbar.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/carrousel.css">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/Design_sans_titre-removebg-preview 4.png">
     <!-- pour logo fenetre -->
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
@@ -57,12 +62,23 @@
             </div>
         </nav>
     </header>
+
     <div class="tab-bar">
-        <a href="index-client.html"><i class="fa-solid fa-house"></i></a>
-        <a href="#"><i class="fi fi-rr-clapperboard-play"></i></a>
-        <a href="#"><i class="fi fi-rr-tv-retro"></i></a>
-        <a href="years.html"><i class="fi fi-rr-90s-music-disc"></i></i></a>
-        <a href="#"><i class="fi fi-rr-heart"></i></a>
+        <a href="index-client.html" >
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <a href="series.html">
+            <i class="fi fi-rr-tv-retro"></i>
+        </a>
+
+        <a href="films.html">
+            <i class="fi fi-rr-clapperboard-play"></i>
+        </a>
+
+        <a href="#">
+            <i class="fi fi-rr-heart"></i>
+        </a>
+
         <a href="#" class="icon dropdown-arrow" id="accountToggle">
             <i class="fa-solid fa-user"></i>
         </a>
@@ -70,12 +86,12 @@
 
     <main>
         <section id="player">
-            <video width="100%" height="700" autoplay loop playsinline>
+            <video autoplay muted loop playsinline>
                 <source src="/assets/images/Shrek 4, il était une fin - Extrait ＂Le contrat＂ [VF｜HD] (online-video-cutter.com).mp4" type="video/mp4">
             </video>
             
             <div class="overlay-content">
-                <img src="/assets/images/Shrek4.png" alt="logo_titre_shrek4" width="400">
+                <img src="/assets/images/Shrek4.png" alt="logo_titre_shrek4">
                 <p>Après avoir vaincu un méchant dragon, sauvé une belle princesse et le royaume de ses parents, que peut encore faire un ogre malodorant et mal léché ? Domestiqué, assagi, Shrek a perdu jusqu'à l'envie de rugir et regrette le bon vieux temps où il semait la terreur dans le royaume. Aujourd'hui, tel une idole déchue, il se contente de signer des autographes à tour de bras. Trop triste.</p>
                 <div id="overlay-button">
                     <button><i class="fa-solid fa-play"></i> Lecture</button>
@@ -88,58 +104,40 @@
             </div>
         </section>
 
-        <section id="affiche">
-            <h1>
-                éxclusivité
-            </h1>
-
-            <div>
-                <img src="/assets/images/Angela1.jpg" alt="">
-                <img src="/assets/images/Angela2.jpg" alt="">
-                <img src="/assets/images/Angela3.jpg" alt="">
-                <img src="/assets/images/Angela4.jpg" alt="">
-                <img src="/assets/images/Angela5.jpg" alt="">
-            </div>
-        </section>
-
-        <section>
+        <section class="section">
             <h2>
                 Reprendre
             </h2>
-            <div class="reprendre-container" id="links-container">
-                <div class="arrow-left"><i class="fi fi-bs-angle-left"></i></div>
-                <div class="carousel-container-reprendre" id="historique-container">
-                    <!-- Les séries seront injectées ici par JavaScript -->
-                </div>
-                <div class="arrow-right"><i class="fi fi-bs-angle-right"></i></div>
+            <h2>Historique de lecture</h2>
+            <div class="carousel" data-carousel data-source="history" data-layout="landscape" style="--per-page:5">
+            <button class="nav prev" aria-label="Précédent" data-prev>❮</button>
+            <div class="viewport"><div class="track" data-track></div></div>
+            <button class="nav next" aria-label="Suivant" data-next>❯</button>
             </div>
             
         </section>
         
 
-        <section id="film">
+        <section id="film" class="section">
             <h2>
                 Films
             </h2>
-            <div class="animation-container">
-                <div class="arrow-left-animation"><i class="fi fi-bs-angle-left"></i></div>
-                <div class="carousel-container-animation" id="animation-films-container">
-                    <!-- Les films d'animation seront injectés ici par JavaScript -->
-                </div>
-                <div class="arrow-right-animation"><i class="fi fi-bs-angle-right"></i></div>
+            <div class="carousel" data-carousel data-type="movie" data-layout="portrait" style="--per-page:5">
+            <button class="nav prev" aria-label="Précédent" data-prev>❮</button>
+            <div class="viewport"><div class="track" data-track></div></div>
+            <button class="nav next" aria-label="Suivant" data-next>❯</button>
             </div>
+              
         </section>
 
-        <section>
+        <section class="section">
             <h2>
                 Séries
             </h2>
-            <div class="container">
-                <div class="arrow-left-series"><i class="fi fi-bs-angle-left"></i></div>
-                <div class="carousel-container" id="series-container">
-                    <!-- Les séries seront injectées ici par JavaScript -->
-                </div>
-                <div class="arrow-right-series"><i class="fi fi-bs-angle-right"></i></div>
+            <div class="carousel" data-carousel data-type="tv" data-layout="portrait" style="--per-page:5">
+            <button class="nav prev" aria-label="Précédent" data-prev>❮</button>
+            <div class="viewport"><div class="track" data-track></div></div>
+            <button class="nav next" aria-label="Suivant" data-next>❯</button>
             </div>
 
         </section>
@@ -163,9 +161,12 @@
         <P>Tous droits réservés © Retrotoon Group 2024</P>
     </footer>
 
-    <!-- <script src="https://kit.fontawesome.com/e5a9a83adf.js" crossorigin="anonymous"></script> -->
-    <script src="/assets/script/index-client.js"></script>
-    
+      <div id="debug" class="debug" hidden></div>
+
+
+    <script src="/assets/script/carrousel.js" defer></script>
+    <script src="/assets/script/searchbar.js"></script>
+    <script src="/assets/script/sub-navbar.js"></script>
 </body>
 
 </html>
