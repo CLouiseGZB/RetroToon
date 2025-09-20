@@ -27,7 +27,6 @@ footer img {
   color: #FFFAE0;
   font-size: 16px;
   cursor: pointer;
-  transition: color .3s;
 }
 #liste-footer p:hover {
   color: #EB7A57;
@@ -37,7 +36,6 @@ footer i {
   color: #FFFAE0;
   padding: 10px;
   cursor: pointer;
-  transition: color .3s;
 }
 footer i:hover {
   color: #E28B70;

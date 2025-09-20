@@ -34,7 +34,6 @@
   text-decoration: none;
   color: #FFFAE0;
   font-size: 16px;
-  transition: color .3s;
 }
 .nav-links a:hover {
   color: #EB7A57;
@@ -51,7 +50,6 @@
 .nav-icons .icon i {
   font-size: 1.5em;
   color: #FFFAE0;
-  transition: color .3s;
   text-decoration: none;
 }
 .icon i:hover,
@@ -65,6 +63,10 @@
 
 
 @media (max-width: 768px) {
+  .nav-links, .nav-icons {
+    display: none;
+  }
+
   /* Barre du bas */
   .tab-bar {
     display: flex;

@@ -10,7 +10,6 @@
   background: var(--bg);
   z-index: 99;
   display: none;
-  transition: opacity .3s, visibility .3s;
   opacity: 0;
   visibility: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, .6);
@@ -30,7 +29,6 @@
   align-items: center;
   text-decoration: none;
   padding: 20px 15px;
-  transition: color .2s;
 }
 .sub-menus a:hover {
   color: #EB7A57;
@@ -44,4 +42,4 @@
   margin-inline: 10%;
 }
 
-@media (max-width: 1024px) {}
+@media (max-width: 768px) {}
