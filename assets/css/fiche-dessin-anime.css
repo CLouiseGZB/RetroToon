@@ -4,6 +4,8 @@
 
 /* @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css); */
 
+
+
 fieldset,
 label {
     margin: 0;
@@ -26,6 +28,7 @@ body {
     --corail: #EB7A57;
     --font-size-paragraph: 16px;
     --font-size-title: 2rem;
+    --plyr-color-main: #EB7A57;
 }
 
 body {
@@ -37,6 +40,16 @@ body {
 section {
     margin-right: auto;
     margin-left: auto;
+}
+
+h2 {
+    font-family: "Bangers", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--beige);
+    font-size: var(--font-size-title);
+    margin: 40px 0px 20px 0px;
+    letter-spacing: 2px;
 }
 
 #main-content {
@@ -241,271 +254,24 @@ section {
 
 
 /************ VIDEO PLAYER BOX ************/
-/* Police de l'écriture de la vidéo */
+/*VIDEO CONTAINER*/
 #principal-video h1 {
     font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
+    font-size: 60px;
+    margin: 40px 0px 20px 0px;
     color: var(--beige);
-    font-size: 4rem;
-    margin: 15px 0px 0px 15px;
     letter-spacing: 2px;
-}
-
-/*Placement du h1 sur la vidéo*/
-#title-video-container {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    /* opacité à 0 pour cacher au départ */
-    /* opacity: 0;
-    transition: opacity 1s ease; */
+    flex-direction: row;
+    justify-content: center;
 }
 
-/* cadre qui contient les controls et le titre de la vidéo */
-#frame-video-title-controls {
-    position: absolute;
-    /* ici le frame est par dessus une autre div qui est en position relative,
-    du coup avec je lui fait prendre toute la hauteur de sa div parent (video-container) */
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-/*VIDEO CONTAINER*/
 #principal-video {
-    padding: 2rem;
+    padding: 60px 0px 20px 0px;
     /* border: 1px solid green; */
 }
 
-#video-container {
-    position: relative;
-    width: 100%;
-    height: calc(100vh - 150px);
-    /* overflow: hidden; */
-    margin-top: 50px;
-    /* border: 1px solid yellow; */
-}
-
-#video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none;
-    position: relative;
-    background-color: #000;
-}
-
-#video-controls-container {
-    height: 100px;
-    background: linear-gradient(to top, #000, transparent);
-    position: absolute;
-    bottom: -1px;
-    width: 100%;
-
-    /* opacity: 0;
-    transition: opacity 1s ease; */
-}
-
-#video-container:fullscreen {
-    width: 100vw;
-    /* La vidéo occupe toute la largeur de l'écran */
-    height: 100vh;
-    /* La vidéo occupe toute la hauteur de l'écran */
-    position: relative;
-}
-
-#video-controls-container:fullscreen {
-    width: 100%;
-    /* Les contrôles occupent toute la largeur de l'écran */
-    position: absolute;
-    bottom: 0;
-    /* Positionnez les contrôles en bas de la vidéo */
-    z-index: 10000;
-    /* Assurez-vous que les contrôles sont toujours au-dessus */
-}
-
-/* TOP CONTROLS */
-#top-controls {
-    display: flex;
-    position: relative;
-    bottom: -25px;
-}
-
-/* PROGRESS BAR AND THUMB SLIDER*/
-#container-progress-bar {
-    width: 85%;
-    height: 10px;
-    background-color: #d3d3d3;
-    /*couleur de la barre non remplie */
-    border-radius: 5px;
-    position: relative;
-    cursor: pointer;
-    margin-left: 15px;
-}
-
-#progress-bar {
-    width: 0%;
-    height: 100%;
-    background-color: var(--beige);
-    border-radius: 5px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: width 0.1s ease;
-    z-index: 1;
-    /* la barre de progression est en dessous */
-}
-
-#thumb-slider {
-    width: 100%;
-    position: absolute;
-    top: -5px;
-    left: 0;
-    background: transparent;
-    z-index: 2;
-    /* le thumb slider est au-dessus */
-    -webkit-appearance: none;
-    /* supprime les styles par défaut */
-    pointer-events: none;
-    /* permet de desactiver l'interaction directe avec le slider */
-}
-
-/* apparence du thumb slider */
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    background-color: var(--beige);
-    border-radius: 50%;
-    pointer-events: auto;
-    /* activer l'interaction pour le thumb */
-}
-
-input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background-color: var(--beige);
-    border-radius: 50%;
-    pointer-events: auto;
-    /* activer l'interaction pour le thumb */
-}
-
-#time-progression-container {
-    font-size: var(--font-size-paragraph);
-    color: #fff;
-    font-family: 'Fredoka';
-    position: absolute;
-    top: -6px;
-    right: 0px;
-    margin-right: 15px;
-}
-
-/* ICONES DU PLAYER : #btn-en-arriere, #btn-en-avant, .fa-pause,
-.fa-play, .fa-volume-xmark, .fa-volume-high, .fa-expand, .fa-compress */
-.fa-pause,
-.fa-play,
-.fa-volume-xmark,
-.fa-volume-low,
-.fa-volume-high,
-.fa-expand,
-.fa-compress {
-    font-size: 30px;
-    color: var(--beige);
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-#btn-en-arriere,
-#btn-en-avant {
-    font-size: 30px;
-    color: var(--beige);
-    font-family: 'Fredoka';
-    padding: 5px;
-    cursor: pointer;
-}
-
-/* BOTTOM CONTROLS */
-#bottom-controls {
-    display: flex;
-    margin: 0px 20px;
-    position: relative;
-    bottom: -35px;
-}
-
-/* BOTTOM LEFT CONTROLS */
-div #left-controls {
-    display: flex;
-    gap: 25px;
-}
-
-/* BOTTOM RIGHT CONTROLS */
-#right-controls {
-    display: flex;
-    gap: 25px;
-    position: absolute;
-    right: 10px;
-    align-items: center;
-}
-
-#volume-slider {
-    height: 10px;
-    width: 100px;
-    background-color: #d3d3d3;
-    accent-color: var(--beige);
-    z-index: 2;
-    -webkit-appearance: none;
-    pointer-events: none;
-    border-radius: 5px;
-}
-
-/* #volume-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    pointer-events: auto;
-} */
-
-/* #volume-slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--beige);
-    cursor: pointer;
-} */
-
-/* Dans cette section on cache les controls founis par safari ou chrome */
-video::-webkit-media-controls {
-    display: none !important;
-}
-
-video::-webkit-media-controls-enclosure {
-    display: none !important;
-}
-
 /************ DESCRIPTION ************/
-
-#description h2 {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--beige);
-    font-size: var(--font-size-title);
-    margin-top: 75px;
-    letter-spacing: 2px;
-}
-
 #description p {
     font-family: "Fredoka", sans-serif;
     font-optical-sizing: auto;
@@ -521,7 +287,6 @@ video::-webkit-media-controls-enclosure {
     justify-content: space-between;
     /* border: 1px solid red; */
 }
-
 
 select {
     font-family: "Fredoka", sans-serif;
@@ -561,45 +326,46 @@ select:focus {
 #container-favoris-and-like {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 20px;
 }
 
 #container-favoris-and-like>button {
-    background: none;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
     font-size: 30px;
     color: var(--beige);
+    background-color: var(--dark-blue);
+    border: 1px solid var(--beige);
+    border-radius: 4px;
+    height: 35px;
+    width: 140px;
+    padding: 0px 10px 0px 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-/* .fa-heart,
-.fa-thumbs-up {
-    font-size: 30px;
-    color: var(--beige);
-    margin-top: 10px;
-    cursor: pointer;
+#container-favoris-and-like>button:hover {
+    border: 2px solid var(--corail);
+}
+
+/* #favorite-button,
+#like-button {
+    text-align: center;
+    border: 1px solid var(--beige);
+    border-radius: 4px;
+    height: 35px;
+    width: 140px;
+    padding: 0px 10px 0px 10px;
 } */
+.fi-rr-heart,
+.fi-tr-feedback-review,
+.fi-sr-heart,
+.fi-sr-feedback-review {
+    font-size: 20px;
+}
 
 /************ COMMENTAIRES ************/
-#commentaires {
-    width: 90%;
-}
-
-#description {
-    width: 90%;
-}
-
-#commentaires h2 {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--beige);
-    font-size: var(--font-size-title);
-    margin-top: 75px;
-    letter-spacing: 2px;
-}
-
 #commentaires p {
     font-family: "Fredoka", sans-serif;
     font-optical-sizing: auto;
@@ -646,18 +412,6 @@ select:focus {
 }
 
 /************ VOTRE AVIS ************/
-
-#votre-avis h2 {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--beige);
-    font-size: var(--font-size-title);
-    margin: 25px 0px;
-    letter-spacing: 2px;
-    margin-left: 5%;
-}
-
 #votre-avis p {
     font-family: "Fredoka", sans-serif;
     font-optical-sizing: auto;
@@ -668,7 +422,11 @@ select:focus {
 }
 
 #votre-avis .user-comment-row {
-    margin: 0px 0px 20px 5%;
+    margin: 20px 0px 20px 0px;
+}
+
+.container-textarea {
+    text-align: center;
 }
 
 textarea {
@@ -687,7 +445,8 @@ textarea {
     font-weight: 400;
     font-size: var(--font-size-paragraph);
     line-height: 1.5;
-    margin-left: 5%;
+    display: block;
+    margin: auto;
 }
 
 textarea:hover {
@@ -696,7 +455,7 @@ textarea:hover {
 
 textarea:focus {
     cursor: text;
-    border-color: var(--beige);
+    border-color: var(--corail);
     /*bordure ne s'agrandit pas */
 }
 
@@ -724,16 +483,6 @@ button[type="submit"]:focus {
 }
 
 /************ NOS SUGGESTIONS ************/
-#nos-suggestions h2 {
-    font-family: "Bangers", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: var(--beige);
-    font-size: var(--font-size-title);
-    margin: 50px 0 30px 5%;
-    letter-spacing: 2px;
-}
-
 /* CODE DE LOUISIANE */
 #historique-container,
 #series-container {
@@ -1031,7 +780,7 @@ footer a {
 }
 
 /************ RESPONSIVE ************/
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
     /*** TOP NAV BAR ***/
     #menu {
@@ -1102,30 +851,24 @@ footer a {
         color: #E28B70;
     }
 
-    /*DESCRIPTION SELECT*/
-    .select-container-row {
-        margin: 25px auto 0px auto;
+    /***********/
+
+    #main-content {
+        max-width: 725px;
+    }
+
+    /* Police de l'écriture de la vidéo */
+    #principal-video h1 {
+        font-size: 40px;
     }
 
     /* SECTION VIDEO */
-    #video-container {
-        width: 100%;
-        /*élément prend la largeur de l'écran */
-        height: auto;
-        /* ajuste automatiquement la hauteur selon le contenu */
-        margin-top: 20px;
-    }
-
     video {
         width: 100%;
         height: auto;
         /*vidéo s'adaptera à la largeur de son conteneur */
     }
 
-    #progress-bar {
-        width: 100%;
-        /* le slider de la barre de progression s'adapte aussi à la largeur */
-    }
 
     /* FOOTER */
     footer {
@@ -1143,4 +886,61 @@ footer a {
     }
 }
 
-@media (max-width: 345px) {}
+@media (max-width: 631px) {
+
+    /*  */
+    #container-select-boxes-and-favorite-likes {
+        flex-direction: column-reverse;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 426px) {
+
+    /* Police de l'écriture de la vidéo */
+    #principal-video h1 {
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 376px) {
+
+    /* Police de l'écriture de la vidéo */
+    #principal-video h1 {
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 360px) {
+    p {
+        font-size: 10px;
+    }
+
+    /************ VIDEO PLAYER BOX ************/
+    /* Police de l'écriture de la vidéo */
+    #principal-video h1 {
+        font-size: 16px;
+    }
+
+    /*VIDEO CONTAINER*/
+    #principal-video {
+        padding: 2rem;
+        /* border: 1px solid green; */
+    }
+
+    /* DESCRIPTION */
+    select {
+        font-weight: 400;
+        background-size: 15px;
+        width: 140px;
+    }
+
+    .fa-heart,
+    .fa-thumbs-up {
+        font-size: 25px;
+    }
+}
